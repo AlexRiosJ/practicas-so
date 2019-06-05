@@ -10,9 +10,9 @@ int main(){
 	char pwd[50];
 	int pid;
 	printf("Usuario:");
-	scanf("%s[^\n]",user);
+	scanf("%[^\n]%*c",user);
 	printf("Contrasena:");
-	scanf("%s[^\n]",pwd);	
+	scanf("%[^\n]%*c",pwd);	
 	while(validCredentials(user,pwd) != 0){
 		pid = fork();
 		int status;
@@ -24,15 +24,16 @@ int main(){
 			wait(&status);
 			if(WEXITSTATUS(status) == 0){
 				printf("Usuario:");
-				scanf("%s[^\n]",user);
+				scanf("%[^\n]%*c",user);
 				printf("Contrasena:");
-				scanf("%s[^\n]",pwd);	
+				scanf("%[^\n]%*c",pwd);	
 			}
 			else{ // shutdown
 				exit(1); // Sends shutdown state to init
 			}
 		}
 	}
+	exit(0);
 }
 
 

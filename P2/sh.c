@@ -1,24 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 int main(){
-	printf("Hello Shell World!\n");
 	printf("sh>");
 	char command[100];
-	scanf("%s[^\n]",command);
+	scanf("%[^\n]%*c",command);
 	int pid;
 	while(strcmp(command,"exit") != 0 && strcmp(command,"shutdown") != 0){
+		int flag = 0;
+		if(command[strlen(command)-1] == '&'){
+			flag = 1;
+		}
 		pid = fork();
 		if(pid == 0){
-			execlp(command,command,NULL);
+			char finalCommand[100];
+			strncpy(finalCommand,command,sizeof(command));
+			// If there's a background process call, then it removes the symbol to allow execution 
+			if(flag == 1){ 
+				strncpy(finalCommand,command,strlen(command)-2);
+				finalCommand[strlen(command)-2] = '\0';
+			}
+			execlp(finalCommand,finalCommand,NULL);
 			exit(0);
 		}
 		else{
-			wait(NULL);
+			if(flag != 1){
+				wait(NULL);
+			}
 			printf("\nsh>");
 			fflush(stdin);
-			scanf("%s[^\n]",command);
+			scanf("%[^\n]%*c",command);
 		}
 	}
 	if(strcmp(command,"exit") == 0){
