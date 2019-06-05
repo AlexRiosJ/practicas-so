@@ -29,7 +29,7 @@ int main(){
 				scanf("%s[^\n]",pwd);	
 			}
 			else{ // shutdown
-				exit(0);
+				exit(1); // Sends shutdown state to init
 			}
 		}
 	}
