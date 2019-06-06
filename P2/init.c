@@ -8,15 +8,28 @@
 int main() {
     int pid;
     int i;
+    int status;
+    int parent = getpid();
 
     for(i = 0; i < CHILDREN; i++){
-        pid = fork();
-        int status;
+        if(getpid() == parent)
+            pid = fork();
         if(pid == 0){
             execlp("xterm", "xterm", "-e", "./getty", NULL);
-            exit(0);
+        }
+    }
+
+    while(1) {
+        wait(&status);
+        printf("%d\n", status);
+        if(status == 0) {
+            if(getpid() == parent)
+                pid = fork();
+            if(pid == 0){
+                execlp("xterm", "xterm", "-e", "./getty", NULL);
+            }
         } else {
-			wait(&status);
+            return 0;
         }
     }
 

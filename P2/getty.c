@@ -19,7 +19,7 @@ int main(){
 		int status;
 		if(pid == 0){ // Means if it's child process
 			execlp("./sh","sh",NULL);
-			exit(0);
+			exit(0); // Not sure if this exit is needed
 		}
 		else{
 			wait(&status);
@@ -36,7 +36,6 @@ int main(){
 	}
 	exit(0);
 }
-
 
 int validCredentials(char *user,char *pwd){
 	char fileUser[50],filePwd[50];

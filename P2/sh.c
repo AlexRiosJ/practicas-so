@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
 
 int main(){
-	printf("sh>");
+	printf("sh > ");
 	char command[100];
 	scanf("%[^\n]%*c",command);
 	int pid;
@@ -29,7 +30,7 @@ int main(){
 			if(flag != 1){
 				wait(NULL);
 			}
-			printf("\nsh>");
+			printf("\nsh > ");
 			fflush(stdin);
 			scanf("%[^\n]%*c",command);
 		}
