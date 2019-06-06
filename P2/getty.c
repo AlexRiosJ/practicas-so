@@ -38,12 +38,15 @@ int main(){
 
 
 int validCredentials(char *user,char *pwd){
-	// Change implementation to verify if it exists on file
-	return (strcmp(user,"Alfredo") == 0 && strcmp(pwd,"123") == 0);
-	/*file = fopen("passwd.txt", "r");
-	if (file) {
-		while ((c = getc(file)) != EOF)
-			putchar(c);
-		fclose(file);
-	}*/
+	char fileUser[50],filePwd[50];
+	FILE *fptr;
+	fptr = fopen("passwd.txt","r");
+	while(fscanf(fptr,"%[^:]:%[^\n]%*c",fileUser,filePwd) != EOF){
+		if(strcmp(user,fileUser) == 0 && strcmp(pwd,filePwd) == 0){
+			fclose(fptr);
+			return 1;
+		}
+	}
+	fclose(fptr);
+	return 0;
 }
