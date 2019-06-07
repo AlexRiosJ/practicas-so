@@ -37,7 +37,7 @@ int main(){
 				}
 			}
 		}else{
-			printf("El usuario o contrasena es incorrecto\n");
+			printf("Usuario o contrasena incorrectos...\n");
 			printf("Usuario:");
 			scanf("%[^\n]%*c",user);
 			printf("Contrasena:");
