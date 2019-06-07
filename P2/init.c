@@ -36,8 +36,6 @@ int main() {
             if(pid == 0){
                 execlp("xterm", "xterm", "-e", "./getty", NULL);
             }
-        } else {
-            return 0;
         }
     }
 
