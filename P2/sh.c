@@ -25,7 +25,7 @@ int main(){
 				finalCommand[strlen(command)-2] = '\0';
 			}
 			// Separating string commands
-			char *separatedCommand[3], *original; 
+			char *separatedCommand[5], *original; 
 			original = strdup(finalCommand);
 			int j = 0; // Argument counter
 			while((separatedCommand[j] = strsep(&original," ")) != NULL){
@@ -42,6 +42,12 @@ int main(){
 					break;
 				case 3:
 					execlp(separatedCommand[0],separatedCommand[0],separatedCommand[1],separatedCommand[2],NULL);
+					break;
+				case 4:
+					execlp(separatedCommand[0],separatedCommand[0],separatedCommand[1],separatedCommand[2],separatedCommand[3],NULL);
+					break;
+				case 5:
+					execlp(separatedCommand[0],separatedCommand[0],separatedCommand[1],separatedCommand[2],separatedCommand[3],separatedCommand[4],NULL);
 					break;
 				default:
 					execlp(separatedCommand[0],separatedCommand[0],NULL);
