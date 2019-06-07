@@ -10,6 +10,7 @@ int main() {
     int i;
     int status;
     int parent = getpid();
+    int shutdown = -1;
 
     for(i = 0; i < CHILDREN; i++){
         if(getpid() == parent)
@@ -21,7 +22,14 @@ int main() {
 
     while(1) {
         wait(&status);
-        printf("%d\n", status);
+        shutdown = access("shutdown", F_OK);
+
+        if(shutdown != -1){
+            remove("shutdown");
+            execlp("killall", "killall", "xterm", NULL);
+            return 0;
+        }
+        
         if(status == 0) {
             if(getpid() == parent)
                 pid = fork();

@@ -30,6 +30,8 @@ int main(){
 				scanf("%[^\n]%*c",pwd);	
 			}
 			else{ // shutdown
+				FILE *fp = fopen("shutdown", "w");
+				fclose(fp);
 				exit(1); // Sends shutdown state to init
 			}
 		}
