@@ -20,7 +20,7 @@ int main(){
 			int status;
 			if(pid == 0){ // Means if it's child process
 				execlp("./sh","sh",NULL);
-				exit(0); // Not sure if this exit is needed
+				exit(0);
 			}
 			else{
 				wait(&status);
