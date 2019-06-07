@@ -14,26 +14,34 @@ int main(){
 	scanf("%[^\n]%*c",user);
 	printf("Contrasena:");
 	scanf("%[^\n]%*c",pwd);	
-	while(validCredentials(user,pwd) != 0){
-		pid = fork();
-		int status;
-		if(pid == 0){ // Means if it's child process
-			execlp("./sh","sh",NULL);
-			exit(0); // Not sure if this exit is needed
-		}
-		else{
-			wait(&status);
-			if(WEXITSTATUS(status) == 0){
-				printf("Usuario:");
-				scanf("%[^\n]%*c",user);
-				printf("Contrasena:");
-				scanf("%[^\n]%*c",pwd);	
+	while(1){
+		if(validCredentials(user,pwd) != 0){
+			pid = fork();
+			int status;
+			if(pid == 0){ // Means if it's child process
+				execlp("./sh","sh",NULL);
+				exit(0); // Not sure if this exit is needed
 			}
-			else{ // shutdown
-				FILE *fp = fopen("shutdown", "w");
-				fclose(fp);
-				exit(1); // Sends shutdown state to init
+			else{
+				wait(&status);
+				if(WEXITSTATUS(status) == 0){
+					printf("Usuario:");
+					scanf("%[^\n]%*c",user);
+					printf("Contrasena:");
+					scanf("%[^\n]%*c",pwd);	
+				}
+				else{ // shutdown
+					FILE *fp = fopen("shutdown", "w");
+					fclose(fp);
+					exit(1); // Sends shutdown state to init
+				}
 			}
+		}else{
+			printf("El usuario o contrasena es incorrecto\n");
+			printf("Usuario:");
+			scanf("%[^\n]%*c",user);
+			printf("Contrasena:");
+			scanf("%[^\n]%*c",pwd);	
 		}
 	}
 	exit(0);

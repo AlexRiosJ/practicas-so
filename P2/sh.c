@@ -11,6 +11,7 @@ int main(){
 	int pid;
 	while(strcmp(command,"exit") != 0 && strcmp(command,"shutdown") != 0){
 		int flag = 0;
+		// Checking for background order
 		if(command[strlen(command)-1] == '&'){
 			flag = 1;
 		}
@@ -23,7 +24,29 @@ int main(){
 				strncpy(finalCommand,command,strlen(command)-2);
 				finalCommand[strlen(command)-2] = '\0';
 			}
-			execlp(finalCommand,finalCommand,NULL);
+			// Separating string commands
+			char *separatedCommand[3], *original; 
+			original = strdup(finalCommand);
+			int j = 0; // Argument counter
+			while((separatedCommand[j] = strsep(&original," ")) != NULL){
+				//Increasing argument counter
+				j++;
+			}
+			// Making call with correct arguments
+			switch(j){
+				case 1: 
+					execlp(separatedCommand[0],separatedCommand[0],NULL);
+					break;
+				case 2:
+					execlp(separatedCommand[0],separatedCommand[0],separatedCommand[1],NULL);
+					break;
+				case 3:
+					execlp(separatedCommand[0],separatedCommand[0],separatedCommand[1],separatedCommand[2],NULL);
+					break;
+				default:
+					execlp(separatedCommand[0],separatedCommand[0],NULL);
+					break;
+			}
 			exit(0);
 		}
 		else{
