@@ -6,8 +6,6 @@
 
 #define ITERATIONS 2000000000
 
-// Compile with: gcc -o leibniz leibniz.c -lm
-
 int main()
 {
 	int i;

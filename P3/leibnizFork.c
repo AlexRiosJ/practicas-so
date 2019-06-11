@@ -11,7 +11,26 @@
 
 double result = 0;
 
-void tfunc(void* args);
+void tfunc(void *args)
+{
+    int nthread = *((int*) args);
+    int i;
+    int inicio = nthread * (ITERATIONS / NTHREADS);
+    int fin = (nthread + 1) * (ITERATIONS / NTHREADS);
+    double threadResult = 0.0;
+
+    for (i = inicio; i < fin; i++)
+    {
+        threadResult += (pow(-1.0, i) / (2.0 * i + 1.0));
+    }
+
+    char filename[8];
+    sprintf(filename, "result%d", nthread);
+    FILE *fp = fopen(filename, "w");
+    fprintf(fp, "%lf\n", threadResult);
+	fclose(fp);
+	exit(nthread); // Sends shutdown state to init
+}
 
 int main()
 {
@@ -75,25 +94,4 @@ int main()
 	elapsed_time = stop_ts - start_ts;
 	printf("------------------------------\n");
 	printf("TOTAL TIME: %d seconds\n", (int)elapsed_time);
-}
-
-void tfunc(void *args)
-{
-    int nthread = *((int*) args);
-    int i;
-    int inicio = nthread * (ITERATIONS / NTHREADS);
-    int fin = (nthread + 1) * (ITERATIONS / NTHREADS);
-    double threadResult = 0.0;
-
-    for (i = inicio; i < fin; i++)
-    {
-        threadResult += (pow(-1.0, i) / (2.0 * i + 1.0));
-    }
-
-    char filename[8];
-    sprintf(filename, "result%d", nthread);
-    FILE *fp = fopen(filename, "w");
-    fprintf(fp, "%lf\n", threadResult);
-	fclose(fp);
-	exit(nthread); // Sends shutdown state to init
 }

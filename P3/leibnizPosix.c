@@ -11,7 +11,7 @@
 // Compile with: gcc -o leibnizPosix leibnizPosix.c -lm -lpthread
 
 double result = 0;
-double threadRes[NTHREADS];
+double threadResults[NTHREADS];
 
 void *tfunc(void *args)
 {
@@ -22,11 +22,9 @@ void *tfunc(void *args)
 	
 	for (i = inicio; i < fin; i++)
 	{
-		threadRes[nthread] += (pow(-1, i) / (2 * i + 1));
+		threadResults[nthread] += (pow(-1, i) / (2 * i + 1));
 	}
 }
-
-// Compile with: gcc -o leibniz leibniz.c -lm
 
 int main()
 {
@@ -47,14 +45,14 @@ int main()
 	for (i = 0; i < NTHREADS; i++)
 	{
 		numberArray[i] = i;
-		pthread_create(&tid[i], NULL, tfunc, (void *)&numberArray[i]);
+		pthread_create(&tid[i], NULL, tfunc, (void *) &numberArray[i]);
 	}
 
 	for (i = 0; i < NTHREADS; i++)
 		pthread_join(tid[i], NULL);
 
 	for (i = 0; i < NTHREADS; i++)
-		result += threadRes[i];
+		result += threadResults[i];
 
 	printf("Result for %d: %f\n", ITERATIONS, result);
 
@@ -63,5 +61,5 @@ int main()
 
 	elapsed_time = stop_ts - start_ts;
 	printf("------------------------------\n");
-	printf("TOTAL TIME: %d seconds\n", (int)elapsed_time);
+	printf("TOTAL TIME: %d seconds\n", (int) elapsed_time);
 }

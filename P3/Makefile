@@ -1,4 +1,4 @@
-all: leibnizSerial leibnizPosix leibnizFork
+all: leibnizSerial leibnizPosix leibnizFork leibnizClone
 
 leibnizSerial: leibnizSerial.c
 	gcc -o leibnizSerial leibnizSerial.c -lm
@@ -9,5 +9,8 @@ leibnizPosix: leibnizPosix.c
 leibnizFork: leibnizFork.c
 	gcc -o leibnizFork leibnizFork.c -lm
 
+leibnizClone: leibnizClone.c
+	gcc -o leibnizClone leibnizClone.c -lm
+
 clean:
-	rm leibnizSerial leibnizPosix leibnizFork
+	rm leibnizSerial leibnizPosix leibnizFork leibnizClone
