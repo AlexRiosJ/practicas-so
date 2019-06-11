@@ -5,7 +5,7 @@
 #include <sys/time.h>
 
 #define ITERATIONS 2000000000
-#define NTHREADS 2
+#define NTHREADS 4
 
 double result = 0;
 

@@ -43,6 +43,7 @@ int main()
         if(pid == 0)
         {
             tfunc((void *) &numberArray[i]);
+            exit(0);
         }
     }
 
@@ -56,8 +57,8 @@ int main()
         FILE *fp = fopen(filename, "r");
         while(fgets(line, sizeof line, fp) != NULL)
             threadResults[status] = atof(line);
-        printf("status: %d result = %lf\n", status, threadResults[status]);
         fclose(fp);
+        remove(filename);
     }
 
     for (i = 0; i < NTHREADS; i++)
@@ -84,14 +85,11 @@ void tfunc(void *args)
     int fin = (nthread + 1) * (ITERATIONS / NTHREADS);
     double threadResult = 0.0;
 
-    printf("Thread num: %d, inicio: %d, fin: %d\n", nthread, inicio, fin);
-
     for (i = inicio; i < fin; i++)
     {
         threadResult += (pow(-1.0, i) / (2.0 * i + 1.0));
     }
 
-    printf("Result = %lf\n", threadResult);
     char filename[8];
     sprintf(filename, "result%d", nthread);
     FILE *fp = fopen(filename, "w");
