@@ -8,8 +8,8 @@
 
 // Compile with: gcc -o leibniz leibniz.c -lm
 
-int main(){
-	
+int main()
+{
 	int i;
 	long long start_ts;
 	long long stop_ts;
@@ -19,18 +19,19 @@ int main(){
 
 	gettimeofday(&ts, NULL);
 	start_ts = ts.tv_sec; // Start time
-	
+
 	double result = 0;
-	for(i = 0; i < ITERATIONS; i++){
-		result += (pow(-1,i) / (2 * i + 1));
+	for (i = 0; i < ITERATIONS; i++)
+	{
+		result += (pow(-1, i) / (2 * i + 1));
 	}
-	
-	printf("Result for %d: %f\n",ITERATIONS,result);
-	
+
+	printf("Result for %d: %f\n", ITERATIONS, result);
+
 	gettimeofday(&ts, NULL);
 	stop_ts = ts.tv_sec; // End time
 
 	elapsed_time = stop_ts - start_ts;
 	printf("------------------------------\n");
-	printf("TOTAL TIME: %d seconds\n",(int) elapsed_time);
+	printf("TOTAL TIME: %d seconds\n", (int)elapsed_time);
 }
