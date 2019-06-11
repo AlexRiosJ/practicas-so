@@ -6,6 +6,11 @@
 
 #define ITERATIONS 2000000000
 #define NTHREADS 4
+<<<<<<< HEAD
+=======
+
+// Compile with: gcc -o leibnizPosix leibnizPosix.c -lm -lpthread
+>>>>>>> 91d8aa9d177fcaad28c74903c9253bfbf77656fe
 
 double result = 0;
 
