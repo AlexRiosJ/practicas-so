@@ -53,7 +53,7 @@ int main()
 	for (i = 0; i < NTHREADS; i++)
 		result += threadResults[i];
 
-	printf("Result for %d: %f\n", ITERATIONS, result);
+	printf("Result for %d: %f\n", ITERATIONS, result * 4);
 
 	gettimeofday(&ts, NULL);
 	stop_ts = ts.tv_sec; // End time

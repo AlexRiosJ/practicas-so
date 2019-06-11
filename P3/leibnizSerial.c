@@ -24,7 +24,7 @@ int main()
 		result += (i & 1 ? -1.0 : 1.0) / (2 * i + 1);
 	}
 
-	printf("Result for %d: %f\n", ITERATIONS, result);
+	printf("Result for %d: %f\n", ITERATIONS, result * 4);
 
 	gettimeofday(&ts, NULL);
 	stop_ts = ts.tv_sec; // End time
