@@ -5,7 +5,9 @@
 #include <sys/time.h>
 
 #define ITERATIONS 2000000000
-#define NTHREADS 2
+#define NTHREADS 4
+
+// Compile with: gcc -o leibnizPosix leibnizPosix.c -lm -lpthread
 
 double result = 0;
 
