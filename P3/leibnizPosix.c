@@ -65,6 +65,4 @@ int main()
 	elapsed_time = stop_ts - start_ts;
 	printf("------------------------------\n");
 	printf("TOTAL TIME: %d seconds\n", (int)elapsed_time);
-
-   // pthread_mutex_destroy(&lock);
 }
