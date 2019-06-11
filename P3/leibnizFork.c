@@ -59,6 +59,21 @@ int main()
         printf("status: %d result = %lf\n", status, threadResults[status]);
         fclose(fp);
     }
+
+    for (i = 0; i < NTHREADS; i++)
+    {
+        result += threadResults[i];
+    }
+
+
+	printf("Result for %d: %f\n", ITERATIONS, result);
+
+	gettimeofday(&ts, NULL);
+	stop_ts = ts.tv_sec; // End time
+
+	elapsed_time = stop_ts - start_ts;
+	printf("------------------------------\n");
+	printf("TOTAL TIME: %d seconds\n", (int)elapsed_time);
 }
 
 void tfunc(void *args)
@@ -73,11 +88,10 @@ void tfunc(void *args)
 
     for (i = inicio; i < fin; i++)
     {
-        if(i == inicio) printf("%d", nthread);
         threadResult += (pow(-1.0, i) / (2.0 * i + 1.0));
     }
 
-    printf("%lf\n", threadResult);
+    printf("Result = %lf\n", threadResult);
     char filename[8];
     sprintf(filename, "result%d", nthread);
     FILE *fp = fopen(filename, "w");
