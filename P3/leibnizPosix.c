@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <unistd.h>
 #include <pthread.h>
 #include <sys/time.h>
@@ -22,7 +21,7 @@ void *tfunc(void *args)
 	
 	for (i = inicio; i < fin; i++)
 	{
-		threadResults[nthread] += (pow(-1, i) / (2 * i + 1));
+		threadResults[nthread] += (i & 1 ? -1.0 : 1.0) / (2 * i + 1);
 	}
 }
 
