@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <unistd.h>
+#include <pthread.h>
 #include <sys/time.h>
 
 #define ITERATIONS 2000000000
@@ -10,6 +11,7 @@
 // Compile with: gcc -o leibnizPosix leibnizPosix.c -lm -lpthread
 
 double result = 0;
+double threadRes[NTHREADS];
 
 void *tfunc(void *args)
 {
@@ -17,10 +19,10 @@ void *tfunc(void *args)
 	int i;
 	int inicio = nthread * (ITERATIONS / NTHREADS);
 	int fin = (nthread + 1) * (ITERATIONS / NTHREADS);
-
+    printf("Thread num: %d, inicio: %d, fin: %d\n", nthread, inicio, fin);
 	for (i = inicio; i < fin; i++)
 	{
-		result += (pow(-1, i) / (2 * i + 1));
+		threadRes[nthread] += (pow(-1, i) / (2 * i + 1));
 	}
 }
 
@@ -41,6 +43,7 @@ int main()
 	gettimeofday(&ts, NULL);
 	start_ts = ts.tv_sec; // Start time
 
+
 	// Crear los hilos
 	for (i = 0; i < NTHREADS; i++)
 	{
@@ -51,6 +54,9 @@ int main()
 	for (i = 0; i < NTHREADS; i++)
 		pthread_join(tid[i], NULL);
 
+	for(i=0; i < NTHREADS; i++)
+		result += threadRes[i];
+
 	printf("Result for %d: %f\n", ITERATIONS, result);
 
 	gettimeofday(&ts, NULL);
@@ -59,4 +65,6 @@ int main()
 	elapsed_time = stop_ts - start_ts;
 	printf("------------------------------\n");
 	printf("TOTAL TIME: %d seconds\n", (int)elapsed_time);
+
+   // pthread_mutex_destroy(&lock);
 }
