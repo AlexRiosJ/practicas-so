@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <unistd.h>
 #include <sys/time.h>
 
@@ -21,10 +20,11 @@ int main()
 	double result = 0;
 	for (i = 0; i < ITERATIONS; i++)
 	{
-		result += (pow(-1, i) / (2 * i + 1));
+		// printf("%f\n", (i & 1 ? -1.0 : 1.0) * 1 / (2 * i + 1));
+		result += (i & 1 ? -1.0 : 1.0) / (2 * i + 1);
 	}
 
-	printf("Result for %d: %f\n", ITERATIONS, result);
+	printf("Result for %d: %f\n", ITERATIONS, result * 4);
 
 	gettimeofday(&ts, NULL);
 	stop_ts = ts.tv_sec; // End time

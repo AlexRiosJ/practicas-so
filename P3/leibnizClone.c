@@ -2,7 +2,6 @@
 #include <sched.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <sys/time.h>
@@ -24,7 +23,7 @@ int tfunc(void *args)
 
     for (i = inicio; i < fin; i++)
 	{
-		threadResults[nthread] += (pow(-1, i) / (2 * i + 1));
+		threadResults[nthread] += (i & 1 ? -1.0 : 1.0) / (2 * i + 1);
 	}
 }
 
@@ -66,7 +65,7 @@ int main()
     for (i = 0; i < NTHREADS; i++)
         result += threadResults[i];
 
-    printf("Result for %d: %f\n", ITERATIONS, result);
+    printf("Result for %d: %f\n", ITERATIONS, result * 4);
 
     gettimeofday(&ts, NULL);
     stop_ts = ts.tv_sec; // End time

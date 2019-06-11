@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <math.h>
 #include <string.h>
 #include <sys/time.h>
 #include <sys/wait.h>
@@ -21,7 +20,7 @@ void tfunc(void *args)
 
     for (i = inicio; i < fin; i++)
     {
-        threadResult += (pow(-1.0, i) / (2.0 * i + 1.0));
+        threadResult += (i & 1 ? -1.0 : 1.0) / (2.0 * i + 1.0);
     }
 
     char filename[8];
@@ -86,7 +85,7 @@ int main()
     }
 
 
-	printf("Result for %d: %f\n", ITERATIONS, result);
+	printf("Result for %d: %f\n", ITERATIONS, result * 4);
 
 	gettimeofday(&ts, NULL);
 	stop_ts = ts.tv_sec; // End time
