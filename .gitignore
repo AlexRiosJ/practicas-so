@@ -1,2 +1,6 @@
 *.exe
 .vscode
+
+# Ignorar cambios de P4/bin/results.html y results.txt
+results.html
+results.txt
