@@ -45,6 +45,13 @@ void scheduler(int arguments)
 		_enqueue(&ready, callingthread);
 	}
 
+	if (event == TIMER)
+	{
+		threads[callingthread].status = READY;
+		_enqueue(&ready, callingthread);
+		changethread = 1;
+	}
+
 	if (changethread)
 	{
 		old = currthread;
