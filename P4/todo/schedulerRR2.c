@@ -51,7 +51,7 @@ void scheduler(int arguments)
 	if (event == TIMER)
 	{
 		quantumCounter++;
-		if (quantumCounter == 2)
+		if (quantumCounter == QUANTUMSIZE)
 		{
 			quantumCounter = 0;
 			threads[callingthread].status = READY;
