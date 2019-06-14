@@ -27,6 +27,7 @@ void scheduler(int arguments)
 		// Un nuevo hilo va a la cola de listos en prioridad 0
 		threads[callingthread].status=READY;
 		_enqueue(&ready[0],callingthread);
+		currentPriority = 0; // Comienza con prioridad 0
 	}
 	
 	if(event==BLOCKTHREAD)
@@ -49,7 +50,7 @@ void scheduler(int arguments)
 		threads[callingthread].status = READY;
 		// Si hay más de un elemento en la lista de prioridad 0 entonces cambia la prioridad del hilo actual
 		// Encola en la siguiente prioridad:
-		if(!_emptyq(&ready[currentPriority]) && currentPriority < PRIORITYNUMBER - 1){
+		if(!_emptyq(&ready[currentPriority]) && currentPriority < PRIORITYNUMBER - 1 /*&& ready[currentPriority].elements[0] > 0*/){
 			currentPriority++;
 			_enqueue(&ready[currentPriority], callingthread);
 			changethread = 1;
