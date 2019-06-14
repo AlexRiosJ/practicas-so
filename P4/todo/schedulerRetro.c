@@ -67,7 +67,6 @@ void scheduler(int arguments)
 	if(changethread)
 	{
 		old=currthread;
-		int oldPriority;
 		// Determinar el proceso que se debe extraer (el de la prioridad más alta encontrado)
 		int i;
 		for(i = 0; i < PRIORITYNUMBER; i++)
@@ -75,8 +74,8 @@ void scheduler(int arguments)
 			
 			if(!_emptyq(&ready[i]))
 			{
-				printf("La cola %d no esta vacia, %d, %d\n", i, ready[i].head, ready[i].tail);
 				next=_dequeue(&ready[i]); // Cambiar prioridades
+				printf("Sacando el proceso %d en prioridad %d para que entre el proceso %d en prioridad %d\n",old,i,next,currentPriority);
 				break;
 			}
 		}
