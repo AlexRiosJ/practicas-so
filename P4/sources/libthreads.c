@@ -19,6 +19,8 @@ FILE *fp,*fphtml;
 struct timeval  tv;
 int lasttime=0;
 
+char* colors[4] = {"red", "yellow", "green", "blue"};
+
 struct itimerval old_timer;
 double tinic=0.0;
 
@@ -39,7 +41,7 @@ void _printtimethread(int tnum)
 	fprintf(fp,"%d\n",tnum);
 	
 	// Imprimir results.html
-	fprintf(fphtml,"<rect x=\"%d\" y=\"%d\" width=\"%d\" height=\"10\" style=\"fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9\"/> \n",lasttime,tnum*10,timeint==lasttime?1:timeint-lasttime);
+	fprintf(fphtml,"<rect x=\"%d\" y=\"%d\" width=\"%d\" height=\"10\" style=\"fill:%s;stroke:black;stroke-width:1;fill-opacity:1;stroke-opacity:1\"/> \n",lasttime,tnum*10,timeint==lasttime?1:timeint-lasttime, colors[tnum % 4]);
 	lasttime=timeint;
 }
 
