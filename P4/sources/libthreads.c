@@ -41,7 +41,7 @@ void _printtimethread(int tnum)
 	fprintf(fp,"%d\n",tnum);
 	
 	// Imprimir results.html
-	fprintf(fphtml,"<rect x=\"%d\" y=\"%d\" width=\"%d\" height=\"10\" style=\"fill:%s;stroke:black;stroke-width:1;fill-opacity:1;stroke-opacity:1\"/> \n",lasttime,tnum*10,timeint==lasttime?1:timeint-lasttime, colors[tnum % 4]);
+	fprintf(fphtml,"<rect x=\"%d\" y=\"%d\" width=\"%d\" height=\"10\" style=\"fill:%s;stroke:black;stroke-width:1;fill-opacity:0.5;stroke-opacity:1\"/> \n",lasttime,tnum*10,timeint==lasttime?1:timeint-lasttime, colors[tnum % 4]);
 	lasttime=timeint;
 }
 
