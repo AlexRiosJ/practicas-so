@@ -41,6 +41,7 @@ void scheduler(int arguments)
 	{
 		// Un nuevo hilo va a la cola de listos en prioridad 0
 		threads[callingthread].status=READY;
+		printf("Entra %d\n",callingthread);
 		_enqueue(&ready[0],callingthread);
 		currentPriority = 0; // Comienza con prioridad 0
 	}
@@ -63,14 +64,47 @@ void scheduler(int arguments)
 	if (event == TIMER)
 	{
 		threads[callingthread].status = READY;
-		
-		// Si hay más de un elemento en la lista de prioridad 0 entonces cambia la prioridad del hilo actual
-		// Encola en la siguiente prioridad:
-		if(!_emptyq(&ready[currentPriority]) && currentPriority < PRIORITYNUMBER - 1){
-			currentPriority++;
+		//Bandera de control del encolado
+		int enqueueFlag = 0;
+
+		// Obteniendo la prioridad del proceso actual
+		currentPriority = 0;
+		int i;
+		for(i = 0; i < PRIORITYNUMBER; i++) // Revisa cola por cola a ver si hay otro proceso con más prioridad
+		{
+			// printf("PROCESO:%d\n",i);
+			if(!_emptyq(&ready[i])){ // Si la cola no está vacía busca en sus elementos
+				int head = ready[i].head;
+				int tail = ready[i].tail;
+				int j;
+				for(j = tail; j < head; j++){ // En cada cola se revisan los valores en el rango de la cola a la cabeza (por como fue programado)
+					printf("P%d:\tElement:%d\tCurrent:%d\n",i,ready[i].elements[j],callingthread);
+					if(ready[i].elements[j] == callingthread){ // Si se encuentra el proceso actual, esta es su cola de prioridad
+						enqueueFlag = 1;
+						currentPriority = i;
+						// Si se puede pasar de prioridad, se aumenta
+						if(currentPriority < PRIORITYNUMBER - 1){
+							currentPriority++;
+							_enqueue(&ready[currentPriority], callingthread);
+							changethread = 1;
+						}else{ // Si no se puede pasar de prioridad, sólo se mantiene
+							_enqueue(&ready[currentPriority], callingthread);
+							changethread = 1;
+						}
+						break;
+					}
+				}
+				printf("Cambio\n");
+			}
+		}
+
+		// Encola en la prioridad actual:
+		if(!enqueueFlag){
 			_enqueue(&ready[currentPriority], callingthread);
 			changethread = 1;
 		}
+		
+
 	}
 	
 	if(event==UNBLOCKTHREAD)
@@ -87,21 +121,18 @@ void scheduler(int arguments)
 		int i;
 		for(i = 0; i < PRIORITYNUMBER; i++)
 		{
-			
 			if(!_emptyq(&ready[i]))
 			{
 				next=_dequeue(&ready[i]); // Cambiar prioridades
-				printf("Cambiando el proceso %d a prioridad %d para que entre el proceso %d en prioridad %d\n",old,currentPriority,next,i);
-
+				printf("Cambiando el proceso %d con prioridad %d para que entre el proceso %d en prioridad %d\n",old,currentPriority,next,i);
 				break;
 			}
 		}
-
-		printQueues();
-
 		// Luego de esto, hacer el cambio de prioridad y actualizar el valor de currentPriority
 		threads[next].status=RUNNING;
 		_swapthreads(old,next);
+		// FUNCIÓN PARA VERIFICAR
+		//printQueues();
 	}
 
 }
