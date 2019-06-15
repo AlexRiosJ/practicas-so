@@ -1,6 +1,5 @@
 #include <scheduler.h>
 #include <stdio.h>
-#include <unistd.h>
 
 extern THANDLER threads[MAXTHREAD];
 extern int currthread;
@@ -44,7 +43,6 @@ void printQueues(){
 
 void scheduler(int arguments)
 {
-	sleep(1);
 	if(!filledQueues){
 		fillQueues();
 		filledQueues = 1;
