@@ -11,7 +11,7 @@ extern int unblockevent;
 QUEUE ready[PRIORITYNUMBER];
 QUEUE waitinginevent[MAXTHREAD];
 
-int currentPriority;
+int currentPriority = 0;
 
 int filledQueues = 0;
 
@@ -26,19 +26,61 @@ void fillQueues() {
 	}
 }
 
+// Funcion que determina si hay más procesos pendientes en alguna otra cola
+int moreUpcoming(int process){
+	int i,j;
+	for(i = 0; i < PRIORITYNUMBER; i++){
+		if(!_emptyq(&ready[i])){
+			int tail = ready[i].tail;
+			if(ready[i].elements[tail] != -1 && ready[i].elements[tail] != process){
+				return 1;
+			}
+		}
+	}
+	return 0;
+}
+
+// Funcion de verificacion para imprimir las colas en consola (QUITAR AL ENTREGAR)
 void printQueues(){
 	int i;
-		for(i = 0; i < PRIORITYNUMBER; i++)
-		{
-			int j;
-			printf("COLA %d:\t",i);
-			for(j = 0; j < 10; j++) // para cada elemento
-			{	
-				printf("%d\t",ready[i].elements[j]);
-			}
-			printf("\n");
+	for(i = 0; i < PRIORITYNUMBER; i++)
+	{
+		int j;
+		printf("COLA %d:\t",i);
+		for(j = 0; j < 10; j++) // para cada elemento
+		{	
+			printf("%d\t",ready[i].elements[j]);
 		}
-			printf("Current: %d\n",currentPriority);
+		printf("\n");
+	}
+}
+
+// Función que determina la prioridad en la que se encuentra un proceso en determinado momento
+int findPriority(int process){
+	printf("------\n");
+	int i,j;
+	for(i = 0; i < PRIORITYNUMBER; i++){
+			int head = ready[i].head;
+			int tail = ready[i].tail;
+			if (tail <= head) {
+				for(j = tail; j <= head; j++){
+					printf("Comparacion: ELemento:%d\t Proceso:%d\n",ready[i].elements[j],process);
+					if(ready[i].elements[j] == process){ 
+						return i;
+					}		
+				}
+			}
+			else {
+					for(j = head; j <= tail; j++){ // En cada cola se revisan los valores en el rango de la cola a la cabeza (por como fue programado)
+						if(j > head && j < tail) {
+							if(ready[i].elements[j] == process){ 
+								return i;
+							}		
+						}
+					}
+			}
+	}
+	return -1;
 }
 
 void scheduler(int arguments)
@@ -47,7 +89,7 @@ void scheduler(int arguments)
 		fillQueues();
 		filledQueues = 1;
 	}
-	printf("###############################################################################################\n");
+
 	int old,next;
 	int changethread=0;
 	int waitingthread=0;
@@ -59,7 +101,6 @@ void scheduler(int arguments)
 	{
 		// Un nuevo hilo va a la cola de listos en prioridad 0
 		threads[callingthread].status=READY;
-		printf("Entra %d Head: %d, Tail: %d, HeadVal: %d, TailVal: %d\n",callingthread, ready[currentPriority].head, ready[currentPriority].tail, ready[currentPriority].elements[ready[currentPriority].head], ready[currentPriority].elements[ready[currentPriority].tail]);
 		_enqueue(&ready[0],callingthread);
 		printf("Entra %d Head: %d, Tail: %d, HeadVal: %d, TailVal: %d\n",callingthread, ready[currentPriority].head, ready[currentPriority].tail, ready[currentPriority].elements[ready[currentPriority].head], ready[currentPriority].elements[ready[currentPriority].tail]);		currentPriority = 0; // Comienza con prioridad 0
 	}
@@ -69,7 +110,6 @@ void scheduler(int arguments)
 
 		threads[callingthread].status=BLOCKED;
 		_enqueue(&waitinginevent[blockevent],callingthread);
-
 		changethread=1;
 	}
 
@@ -81,83 +121,31 @@ void scheduler(int arguments)
 
 	if (event == TIMER)
 	{
-		printf("TIMER: %d, Calling Thread: %d\n", event, callingthread);
+		//printf("TIMER: %d, Calling Thread: %d\n", event, callingthread);
 		threads[callingthread].status = READY;
 		//Bandera de control del encolado
 		int enqueueFlag = 0;
 
-		// Obteniendo la prioridad del proceso actual
-		currentPriority = 0;
-		int i;
-		for(i = 0; i < PRIORITYNUMBER; i++) // Revisa cola por cola a ver si hay otro proceso con más prioridad
-		{
-			printf("TIMER - Cola %d, estado: %d, Tail: %d, Head: %d\n", i, _emptyq(&ready[i]), ready[i].tail, ready[i].head);
-			// printf("PROCESO:%d\n",i);
-			if(!_emptyq(&ready[i])){ // Si la cola no está vacía busca en sus elementos
-				int head = ready[i].head;
-				int tail = ready[i].tail;
-				int j;
-				if (tail <= head) {
-					printf("Tail: %d, Head: %d\n", ready[i].tail, ready[i].head);
-					for(j = tail; j <= head; j++){ // En cada cola se revisan los valores en el rango de la cola a la cabeza (por como fue programado)
-						printf("P%d:\tElement:%d\tCurrent:%d\n",i,ready[i].elements[j],callingthread);
-						if(ready[i].elements[j] == callingthread){ // Si se encuentra el proceso actual, esta es su cola de prioridad
-							enqueueFlag = 1;
-							currentPriority = i;
-							// Si se puede pasar de prioridad, se aumenta
-							// PONER FUNCION QUE DEVUELVA SI EXISTE OTRO PROCESO DIFERENTE EN LA COLA ACTUAL
-							if(currentPriority < PRIORITYNUMBER - 1 /* && FUNCTION */){
-								currentPriority++;
-								_enqueue(&ready[currentPriority], callingthread);
-								changethread = 1;
-							}else{ // Si no se puede pasar de prioridad, sólo se mantiene
-								_enqueue(&ready[currentPriority], callingthread);
-								changethread = 1;
-							}
-							break;
-						}
-					}
-				} else {
-					printf("Tail: %d, Head: %d\n", ready[i].tail, ready[i].head);
-					for(j = head; j <= tail; j++){ // En cada cola se revisan los valores en el rango de la cola a la cabeza (por como fue programado)
-						if(j > head && j < tail) {
-							printf("P%d:\tElement:%d\tCurrent:%d\n",i,ready[i].elements[j],callingthread);
-							if(ready[i].elements[j] == callingthread){ // Si se encuentra el proceso actual, esta es su cola de prioridad
-								enqueueFlag = 1;
-								currentPriority = i;
-								// Si se puede pasar de prioridad, se aumenta
-								if(currentPriority < PRIORITYNUMBER - 1){
-									currentPriority++;
-									_enqueue(&ready[currentPriority], callingthread);
-									changethread = 1;
-								}else{ // Si no se puede pasar de prioridad, sólo se mantiene
-									_enqueue(&ready[currentPriority], callingthread);
-									changethread = 1;
-								}
-								break;
-							}
-						}
-					}
-				}
-				printf("Cambio\n");
+		if(moreUpcoming(callingthread)){
+			currentPriority = findPriority(callingthread);
+			if(currentPriority < (PRIORITYNUMBER -1)){
+				_enqueue(&ready[++currentPriority],callingthread);
+				printf("IF 1 Proceso %d en prioridad %d\n",callingthread,currentPriority);
+			}else{
+				_enqueue(&ready[4],callingthread);
+				printf("IF 2 Proceso %d en prioridad %d\n",callingthread,currentPriority);
 			}
+			changethread = 1;
+			//printQueues();
 		}
-
-		// Encola en la prioridad actual:
-		if(!enqueueFlag){
-			printf("Entre a enqueueFlag... Prioridad: %d, CallingThread: %d\n", currentPriority, callingthread);
-			_enqueue(&ready[currentPriority], callingthread);
-			printf("Entre a enqueueFlag... Cola %d, estado: %d, Tail: %d, Head: %d\n", currentPriority, _emptyq(&ready[currentPriority]), ready[currentPriority].elements[ready[currentPriority].tail], ready[currentPriority].elements[ready[currentPriority].head]);
-			printQueues();
-		}
-		
-
 	}
 	
 	if(event==UNBLOCKTHREAD)
 	{
-			threads[callingthread].status=READY;
-			_enqueue(&ready[currentPriority],callingthread);
+		threads[callingthread].status=READY;
+		//	_enqueue(&ready[currentPriority],callingthread);
+		currentPriority = 0;
+		_enqueue(&ready[0], callingthread);
 	}
 
 	
@@ -168,20 +156,19 @@ void scheduler(int arguments)
 		int i;
 		for(i = 0; i < PRIORITYNUMBER; i++)
 		{
-			printf("Cola %d, estado: %d, Tail: %d, Head: %d\n", i, _emptyq(&ready[i]), ready[i].tail, ready[i].head);
+		//	printf("Cola %d, estado: %d, Tail: %d, Head: %d\n", i, _emptyq(&ready[i]), ready[i].tail, ready[i].head);
 			if(!_emptyq(&ready[i]))
 			{
-				next=_dequeue(&ready[i]); // Cambiar prioridades
+				next = _dequeue(&ready[i]); // Cambiar prioridades
 				printf("Cambiando el proceso %d con prioridad %d para que entre el proceso %d en prioridad %d\n",old,currentPriority,next,i);
 				break;
 			}
 		}
+
 		// Luego de esto, hacer el cambio de prioridad y actualizar el valor de currentPriority
 		threads[next].status=RUNNING;
 		_swapthreads(old,next);
-		printf("Cola %d, estado: %d, Tail: %d, Head: %d\n", i, _emptyq(&ready[i]), ready[i].tail, ready[i].head);
-		// FUNCIÓN PARA VERIFICAR
-		//printQueues();
+		printQueues();
 	}
 
 }
