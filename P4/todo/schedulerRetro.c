@@ -7,7 +7,7 @@ extern int currthread;
 extern int blockevent;
 extern int unblockevent;
 
-#define PRIORITYNUMBER 10
+#define PRIORITYNUMBER 5
 
 QUEUE ready[PRIORITYNUMBER];
 QUEUE waitinginevent[MAXTHREAD];
