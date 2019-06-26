@@ -4,6 +4,8 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <sys/wait.h>
+#include <sys/types.h>
+#include <signal.h>
 
 // FUNCIÓN DE HW PARA EL INTERCAMBIO DE PROCESOS
 #define atomic_xchg(A, B) __asm__ __volatile__( \
@@ -24,21 +26,23 @@ typedef struct _QUEUE
 
 typedef struct SEMAPHORE
 {
+    unsigned int g; // Variable global para la operacion xchg
     unsigned int contador;
     unsigned int bloqueados;
     QUEUE cola_de_bloqueados;
 } SEMAPHORE;
 
+// Prototipos de funciones de QUEUE y SEMAPHORE
 void _initqueue(QUEUE* q);
 void _enqueue(QUEUE* q, int val);
 int _dequeue(QUEUE* q);
 int _emptyq(QUEUE* q);
 
-void initsem(SEMAPHORE s, int count);
-void waitsem(SEMAPHORE s);
-void signalsem(SEMAPHORE S);
+void initsem(SEMAPHORE* s, int count);
+void waitsem(SEMAPHORE* s);
+void signalsem(SEMAPHORE* S);
 
-SEMAPHORE *semaforo;
+SEMAPHORE* semaforo;
 
 void proceso(int i)
 {
@@ -46,13 +50,13 @@ void proceso(int i)
     for (k = 0; k < CICLOS; k++)
     {
         // Llamada waitsem implementada en la parte 3
-        waitsem(*semaforo);
+        waitsem(semaforo);
         printf("Entra %s ", pais[i]);
         fflush(stdout);
         sleep(rand() % 3);
         printf("\t - %s Sale\n", pais[i]);
         // Llamada waitsignal implementada en la parte 3
-        signalsem(*semaforo);
+        signalsem(semaforo);
         // Espera aleatoria fuera de la sección crítica
         sleep(rand() % 3);
     }
@@ -86,7 +90,7 @@ int main()
     }
 
     //Inicializando semáforo
-    initsem(*semaforo, 1);
+    initsem(semaforo, 1);
     srand(getpid());
 
     for (i = 0; i < 3; i++)
@@ -132,40 +136,52 @@ int _emptyq(QUEUE *q)
     return (q->head == q->tail);
 }
 
-void initsem(SEMAPHORE s, int cuenta)
+void initsem(SEMAPHORE* s, int cuenta)
 {
-    s.contador = cuenta;
-    s.bloqueados = 0;
-    _initqueue(&s.cola_de_bloqueados);
+    s->contador = cuenta;
+    s->bloqueados = 0;
+    _initqueue(&s->cola_de_bloqueados);
 }
 
-void waitsem(SEMAPHORE s)
+void waitsem(SEMAPHORE* s)
 {
-    if (s.contador == 0)
+    int l = 1;
+    
+    do { atomic_xchg(s->g, l) } while(l != 0);
+
+    if (s->contador == 0)
     {
         int procesoActual = getpid();
-        _enqueue(&s.cola_de_bloqueados, procesoActual); // Se encola en la lista de bloqueados
-        s.bloqueados++;
-        // AÑADIR CÓDIGO PARA QUE SE DUERMA ESTE PROCESO
-        // atomic_xchg();
+        _enqueue(&s->cola_de_bloqueados, procesoActual); // Se encola en la lista de bloqueados
+        s->bloqueados++;
+        kill(procesoActual, SIGSTOP);
     }
     else
     {
-        s.contador--;
+        s->contador--;
     }
+
+    l = 1;
+    s->g = 0;
 }
 
-void signalsem(SEMAPHORE s)
+void signalsem(SEMAPHORE* s)
 {
-    if (s.bloqueados == 0)
+    int l = 1;
+
+    do { atomic_xchg(s->g, l) } while(l != 0);
+
+    if (s->bloqueados == 0)
     {
-        s.contador++;
+        s->contador++;
     }
     else
     {
-        int procesoPorDespertar = _dequeue(&s.cola_de_bloqueados);
-        // AÑADIR CÓDIGO PARA QUE SE VUELVA A ACTIVAR ESE PROCESO
-        // atomic_xchg();
-        s.bloqueados--;
+        int procesoPorDespertar = _dequeue(&s->cola_de_bloqueados);
+        s->bloqueados--;
+        kill(procesoPorDespertar, SIGCONT);
     }
+
+    l = 1;
+    s->g = 0;
 }
