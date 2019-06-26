@@ -51,10 +51,10 @@ void proceso(int i)
     {
         // Llamada waitsem implementada en la parte 3
         waitsem(semaforo);
-        printf("Entra %s ", pais[i]);
+        printf("Entra %s\t", pais[i]);
         fflush(stdout);
         sleep(rand() % 3);
-        printf("\t - %s Sale\n", pais[i]);
+        printf("-\t %s Sale\n", pais[i]);
         // Llamada waitsignal implementada en la parte 3
         signalsem(semaforo);
         // Espera aleatoria fuera de la sección crítica
