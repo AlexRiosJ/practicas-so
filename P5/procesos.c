@@ -14,6 +14,74 @@
 char *pais[3] = {"Peru", "Bolvia", "Colombia"};
 int *g;
 
+/* CÓDIGO AÑADIDO  DE LAS COLAS*/
+typedef struct _QUEUE {
+	int elements[CICLOS];
+	int head;
+	int tail;
+} QUEUE;
+
+void _initqueue(QUEUE *q)
+{
+	q->head=0;
+	q->tail=0;
+}
+	
+
+void _enqueue(QUEUE *q,int val)
+{
+	q->elements[q->head]=val;
+	// Incrementa al apuntador
+	q->head++;
+	q->head=q->head%CICLOS;
+}
+
+
+int _dequeue(QUEUE *q)
+{
+	int valret;
+	valret=q->elements[q->tail];
+	// Incrementa al apuntador
+	q->tail++;
+	q->tail=q->tail%CICLOS;
+	return(valret);
+}
+
+int _emptyq(QUEUE *q)
+{
+	return(q->head==q->tail);
+}
+/*  FIN DEL CÓDIGO AÑADIDO DE LAS COLAS */
+
+/*  INICIO DEL CÓDIGO DEL SEMÁFORO */
+typedef struct SEMAPHORE{
+    unsigned int contador;
+    unsigned int bloqueados;
+    QUEUE cola_de_bloqueados;
+}SEMAPHORE;
+/*  INICIO DE LAS FUNCIONES DEL SEMÁFORO */
+void waitsem(SEMAPHORE s){
+    if(s.contador == 0){
+        int procesoActual = getpid();
+        _enqueue(&s.cola_de_bloqueados,procesoActual); // Se encola en la lista de bloqueados
+        s.bloqueados++;
+        // AÑADIR CÓDIGO PARA QUE SE DUERMA ESTE PROCESO
+    }else{
+        s.contador--;
+    }
+}
+
+void signalsem(SEMAPHORE s){
+    if(s.bloqueados == 0){
+        s.contador++;
+    }else{
+        int procesoPorDespertar = _dequeue(&s.cola_de_bloqueados);
+        // AÑADIR CÓDIGO PARA QUE SE VUELVA A ACTIVAR ESE PROCESO
+        s.bloqueados--;
+    }
+}
+/* FIN DEL CÓDIGO AÑADIDO */
+
 void proceso(int i)
 {
     int k;
