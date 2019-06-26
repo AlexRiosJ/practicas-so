@@ -9,6 +9,7 @@ void semwait(int semid)
 	s.sem_op=-1; // Decrementa el semáforo
 	s.sem_flg=SEM_UNDO;
 	semop(semid,&s,1);
+	return;
 }
 	
 void semsignal(int semid)
@@ -18,6 +19,7 @@ void semsignal(int semid)
 	s.sem_op=1; // Incrementa el semáforo
 	s.sem_flg=SEM_UNDO;
 	semop(semid,&s,1);
+	return;
 }
 
 int seminit(int idsem, int value)
@@ -31,4 +33,5 @@ int seminit(int idsem, int value)
 void semdelete(int semid)
 {
 	semctl(semid,0,IPC_RMID,0);	// Eliminar el arreglo de semaforos
+	return;
 }

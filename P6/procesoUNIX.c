@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/wait.h>
 #include "semaphores.h"
 
 							
@@ -18,10 +19,10 @@ void proceso(int i)
 	{
 		semwait(semaforo);	
 		// Inicia sección Crítica
-		printf("Entra %s",pais[i]);
+		printf("Entra %s\t",pais[i]);
 		fflush(stdout);
 		sleep(rand()%3);
-		printf("- %s Sale\n",pais[i]);
+		printf("-\t %s Sale\n",pais[i]);
 		// Termina sección Crítica
 		semsignal(semaforo);
 		
@@ -41,7 +42,7 @@ int main()
 	srand(getpid());
 
     // Inicializando un semáforo desde el SO para recibir a los procesos
-	semaforo = seminit(0x1234,2);
+	semaforo = seminit(0x1234,1);
 
 	// Crea los hilos
 	for(i=0;i<3;i++)
