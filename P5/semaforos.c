@@ -13,7 +13,7 @@
 
 #define CICLOS 10
 
-char *pais[3] = {"Peru", "Bolvia", "Colombia"};
+char *pais[3] = {"Peru", "Bolivia", "Colombia"};
 
 typedef struct _QUEUE
 {
@@ -22,34 +22,6 @@ typedef struct _QUEUE
     int tail;
 } QUEUE;
 
-void _initqueue(QUEUE *q)
-{
-    q->head = 0;
-    q->tail = 0;
-}
-
-void _enqueue(QUEUE *q, int val)
-{
-    q->elements[q->head] = val;
-    q->head++;
-    q->head = q->head % CICLOS;
-}
-
-int _dequeue(QUEUE *q)
-{
-    int valret;
-    valret = q->elements[q->tail];
-    // Incrementa al apuntador
-    q->tail++;
-    q->tail = q->tail % CICLOS;
-    return (valret);
-}
-
-int _emptyq(QUEUE *q)
-{
-    return (q->head == q->tail);
-}
-
 typedef struct SEMAPHORE
 {
     unsigned int contador;
@@ -57,46 +29,16 @@ typedef struct SEMAPHORE
     QUEUE cola_de_bloqueados;
 } SEMAPHORE;
 
+void _initqueue(QUEUE* q);
+void _enqueue(QUEUE* q, int val);
+int _dequeue(QUEUE* q);
+int _emptyq(QUEUE* q);
+
+void initsem(SEMAPHORE s, int count);
+void waitsem(SEMAPHORE s);
+void signalsem(SEMAPHORE S);
+
 SEMAPHORE *semaforo;
-
-void initsem(SEMAPHORE s, int cuenta)
-{
-    s.contador = cuenta;
-    s.bloqueados = 0;
-    _initqueue(&s.cola_de_bloqueados);
-}
-
-void waitsem(SEMAPHORE s)
-{
-    if (s.contador == 0)
-    {
-        int procesoActual = getpid();
-        _enqueue(&s.cola_de_bloqueados, procesoActual); // Se encola en la lista de bloqueados
-        s.bloqueados++;
-        // AÑADIR CÓDIGO PARA QUE SE DUERMA ESTE PROCESO
-        // atomic_xchg();
-    }
-    else
-    {
-        s.contador--;
-    }
-}
-
-void signalsem(SEMAPHORE s)
-{
-    if (s.bloqueados == 0)
-    {
-        s.contador++;
-    }
-    else
-    {
-        int procesoPorDespertar = _dequeue(&s.cola_de_bloqueados);
-        // AÑADIR CÓDIGO PARA QUE SE VUELVA A ACTIVAR ESE PROCESO
-        // atomic_xchg();
-        s.bloqueados--;
-    }
-}
-/* FIN DEL CÓDIGO AÑADIDO */
 
 void proceso(int i)
 {
@@ -108,7 +50,7 @@ void proceso(int i)
         printf("Entra %s ", pais[i]);
         fflush(stdout);
         sleep(rand() % 3);
-        printf("-%s Sale\n", pais[i]);
+        printf("\t - %s Sale\n", pais[i]);
         // Llamada waitsignal implementada en la parte 3
         signalsem(*semaforo);
         // Espera aleatoria fuera de la sección crítica
@@ -160,4 +102,70 @@ int main()
 
     // Eliminar la memoria compartida
     shmdt(semaforo);
+}
+
+void _initqueue(QUEUE *q)
+{
+    q->head = 0;
+    q->tail = 0;
+}
+
+void _enqueue(QUEUE *q, int val)
+{
+    q->elements[q->head] = val;
+    q->head++;
+    q->head = q->head % CICLOS;
+}
+
+int _dequeue(QUEUE *q)
+{
+    int valret;
+    valret = q->elements[q->tail];
+    // Incrementa al apuntador
+    q->tail++;
+    q->tail = q->tail % CICLOS;
+    return (valret);
+}
+
+int _emptyq(QUEUE *q)
+{
+    return (q->head == q->tail);
+}
+
+void initsem(SEMAPHORE s, int cuenta)
+{
+    s.contador = cuenta;
+    s.bloqueados = 0;
+    _initqueue(&s.cola_de_bloqueados);
+}
+
+void waitsem(SEMAPHORE s)
+{
+    if (s.contador == 0)
+    {
+        int procesoActual = getpid();
+        _enqueue(&s.cola_de_bloqueados, procesoActual); // Se encola en la lista de bloqueados
+        s.bloqueados++;
+        // AÑADIR CÓDIGO PARA QUE SE DUERMA ESTE PROCESO
+        // atomic_xchg();
+    }
+    else
+    {
+        s.contador--;
+    }
+}
+
+void signalsem(SEMAPHORE s)
+{
+    if (s.bloqueados == 0)
+    {
+        s.contador++;
+    }
+    else
+    {
+        int procesoPorDespertar = _dequeue(&s.cola_de_bloqueados);
+        // AÑADIR CÓDIGO PARA QUE SE VUELVA A ACTIVAR ESE PROCESO
+        // atomic_xchg();
+        s.bloqueados--;
+    }
 }
