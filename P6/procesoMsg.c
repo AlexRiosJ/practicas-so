@@ -30,7 +30,6 @@ void receive(){
 	do
 	{
 		retval=msgrcv(msgqid,&m,sizeof(MSGTYPE)-sizeof(long),1,0);
-		printf("Recibido: %s\n",m.mensaje);
 		sleep(3);
 	}while(strcmp(m.mensaje,"Libre")!=0); // Hasta que el mensaje sea "Libre"
 }
