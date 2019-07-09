@@ -121,3 +121,38 @@ int getfreeframe()
         i = -1;
     return (i);
 }
+
+int searchvirtualframe()
+{
+    int i;
+    for (i = framesbegin; i < (systemframetablesize + framesbegin) * 2; i++)
+    {
+        if (!systemframetable[i].assigned)
+        {
+            systemframetable[i].assigned = 1;
+            break;
+        }
+    }
+    if (i < (systemframetablesize + framesbegin) * 2)
+        systemframetable[i].assigned = 1;
+    else
+        i = -1;
+    return i;
+}
+
+int getfifo()
+{
+    long first_in_tarrive = 0xFFFFFFFFFFFFFFF;
+    long first_out = -1;
+    struct PROCESSPAGETABLE *i;
+    for (i = ptbr; i < sizeof(struct PROCESSPAGETABLE) * 6; i += sizeof(struct PROCESSPAGETABLE))
+    {
+        if (i->presente && i->tarrived < first_in_tarrive)
+        {
+            first_in_tarrive = i->tarrived;
+            first_out = i->framenumber;
+            i->presente = 0;
+        }
+    }
+    return first_out;
+}
