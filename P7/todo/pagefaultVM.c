@@ -110,22 +110,21 @@ int getfreeframe()
     int i;
     // Busca un marco libre en el sistema
     for (i = framesbegin; i < systemframetablesize + framesbegin; i++)
+    {
         if (!systemframetable[i].assigned)
         {
             systemframetable[i].assigned = 1;
             break;
         }
-    if (i < systemframetablesize + framesbegin)
-        systemframetable[i].assigned = 1;
-    else
-        i = -1;
-    return (i);
+    }
+
+    return i < (systemframetablesize + framesbegin) ? i : -1;
 }
 
 int searchvirtualframe()
 {
     int i;
-    for (i = framesbegin; i < (systemframetablesize + framesbegin) * 2; i++)
+    for (i = systemframetablesize + framesbegin; i < (systemframetablesize * 2 + framesbegin); i++)
     {
         if (!systemframetable[i].assigned)
         {
@@ -133,26 +132,23 @@ int searchvirtualframe()
             break;
         }
     }
-    if (i < (systemframetablesize + framesbegin) * 2)
-        systemframetable[i].assigned = 1;
-    else
-        i = -1;
-    return i;
+    
+    return i < (systemframetablesize * 2 + framesbegin) ? i : -1;
 }
 
 int getfifo()
 {
-    long first_in_tarrive = 0xFFFFFFFFFFFFFFF;
-    long first_out = -1;
-    struct PROCESSPAGETABLE *i;
-    for (i = ptbr; i < sizeof(struct PROCESSPAGETABLE) * 6; i += sizeof(struct PROCESSPAGETABLE))
+    unsigned long min_time = 0xFFFFFFFFFFFFFFFF; 
+    int temp_pag = -1;
+    int i;
+
+    for (i = 0; i < ptlr; i++)
     {
-        if (i->presente && i->tarrived < first_in_tarrive)
+        if ((ptbr + i)->presente && (ptbr + i)->tlastaccess < min_time)
         {
-            first_in_tarrive = i->tarrived;
-            first_out = i->framenumber;
-            i->presente = 0;
+            min_time = (ptbr + i)->tlastaccess;
+            temp_pag = i;
         }
     }
-    return first_out;
+    return temp_pag;
 }

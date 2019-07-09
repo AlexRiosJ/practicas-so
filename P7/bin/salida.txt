@@ -1,0 +1,734 @@
+System Frame Table area = 0x563f9a88f000
+Proccess Page Table area = 0x563f9a890000
+Frames area = 0x563f9a891000
+Base = 0x563f9a89d000
+Primer marco 0
+Frame 0, Dirección 0x563f9a891000 0x563f9a891000 
+Frame 1, Dirección 0x563f9a892000 0x563f9a892000 
+Frame 2, Dirección 0x563f9a893000 0x563f9a893000 
+Frame 3, Dirección 0x563f9a894000 0x563f9a894000 
+Frame 4, Dirección 0x563f9a895000 0x563f9a895000 
+Frame 5, Dirección 0x563f9a896000 0x563f9a896000 
+Frame 6, Dirección 0x563f9a897000 0x563f9a897000 
+Frame 7, Dirección 0x563f9a898000 0x563f9a898000 
+Frame 8, Dirección 0x563f9a899000 0x563f9a899000 
+Frame 9, Dirección 0x563f9a89a000 0x563f9a89a000 
+Frame A, Dirección 0x563f9a89b000 0x563f9a89b000 
+Frame B, Dirección 0x563f9a89c000 0x563f9a89c000 
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=0
+Proceso=0 Página=0
+Páginas del proceso -->
+Proceso=0, Página 0 cargada en el marco 0
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    0 ->   0  1  0  0
+                    0 ->   1  0  0 FFFFFFFF
+                    0 ->   2  0  0 FFFFFFFF
+                    0 ->   3  0  0 FFFFFFFF
+                    0 ->   4  0  0 FFFFFFFF
+                    0 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=0
+Proceso=0 Página=0
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=1000
+Proceso=0 Página=1
+Páginas del proceso --> 0 
+Proceso=0, Página 1 cargada en el marco 3
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    0 ->   0  1  1  0
+                    0 ->   1  1  0  3
+                    0 ->   2  0  0 FFFFFFFF
+                    0 ->   3  0  0 FFFFFFFF
+                    0 ->   4  0  0 FFFFFFFF
+                    0 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=1000
+Proceso=0 Página=1
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=2000
+Proceso=0 Página=2
+Páginas del proceso --> 0  1 
+Proceso=0, Página 2 cargada en el marco 7
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    0 ->   0  1  1  0
+                    0 ->   1  1  1  3
+                    0 ->   2  1  0  7
+                    0 ->   3  0  0 FFFFFFFF
+                    0 ->   4  0  0 FFFFFFFF
+                    0 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=2000
+Proceso=0 Página=2
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=3000
+Proceso=0 Página=3
+Páginas del proceso --> 0  1  2 
+Proceso=0, Página 3 cargada en el marco 0
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    0 ->   0  0  0  C
+                    0 ->   1  1  1  3
+                    0 ->   2  1  1  7
+                    0 ->   3  1  0  0
+                    0 ->   4  0  0 FFFFFFFF
+                    0 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=3000
+Proceso=0 Página=3
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=4000
+Proceso=0 Página=4
+Páginas del proceso --> 1  2  3 
+Proceso=0, Página 4 cargada en el marco 0
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    0 ->   0  0  0  C
+                    0 ->   1  1  1  3
+                    0 ->   2  1  1  7
+                    0 ->   3  0  0 10
+                    0 ->   4  1  0  0
+                    0 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=4000
+Proceso=0 Página=4
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=5000
+Proceso=0 Página=5
+Páginas del proceso --> 1  2  4 
+Proceso=0, Página 5 cargada en el marco 0
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    0 ->   0  0  0  C
+                    0 ->   1  1  1  3
+                    0 ->   2  1  1  7
+                    0 ->   3  0  0 10
+                    0 ->   4  0  0 14
+                    0 ->   5  1  0  0
+---------------------------
+Page fault haSystem Frame Table area = 0x563f9a88f000
+Proccess Page Table area = 0x563f9a890000
+Frames area = 0x563f9a891000
+Base = 0x563f9a89d000
+Primer marco 0
+Frame 0, Dirección 0x563f9a891000 0x563f9a891000 
+Frame 1, Dirección 0x563f9a892000 0x563f9a892000 
+Frame 2, Dirección 0x563f9a893000 0x563f9a893000 
+Frame 3, Dirección 0x563f9a894000 0x563f9a894000 
+Frame 4, Dirección 0x563f9a895000 0x563f9a895000 
+Frame 5, Dirección 0x563f9a896000 0x563f9a896000 
+Frame 6, Dirección 0x563f9a897000 0x563f9a897000 
+Frame 7, Dirección 0x563f9a898000 0x563f9a898000 
+Frame 8, Dirección 0x563f9a899000 0x563f9a899000 
+Frame 9, Dirección 0x563f9a89a000 0x563f9a89a000 
+Frame A, Dirección 0x563f9a89b000 0x563f9a89b000 
+Frame B, Dirección 0x563f9a89c000 0x563f9a89c000 
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=0
+Proceso=2 Página=0
+Páginas del proceso -->
+Proceso=2, Página 0 cargada en el marco 1
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    2 ->   0  1  0  1
+                    2 ->   1  0  0 FFFFFFFF
+                    2 ->   2  0  0 FFFFFFFF
+                    2 ->   3  0  0 FFFFFFFF
+                    2 ->   4  0  0 FFFFFFFF
+                    2 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=0
+Proceso=2 Página=0
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=1000
+Proceso=2 Página=1
+Páginas del proceso --> 0 
+Proceso=2, Página 1 cargada en el marco 6
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    2 ->   0  1  1  1
+                    2 ->   1  1  0  6
+                    2 ->   2  0  0 FFFFFFFF
+                    2 ->   3  0  0 FFFFFFFF
+                    2 ->   4  0  0 FFFFFFFF
+                    2 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=1000
+Proceso=2 Página=1
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=2000
+Proceso=2 Página=2
+Páginas del proceso --> 0  1 
+Proceso=2, Página 2 cargada en el marco 9
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    2 ->   0  1  1  1
+                    2 ->   1  1  1  6
+                    2 ->   2  1  0  9
+                    2 ->   3  0  0 FFFFFFFF
+                    2 ->   4  0  0 FFFFFFFF
+                    2 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=2000
+Proceso=2 Página=2
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=3000
+Proceso=2 Página=3
+Páginas del proceso --> 0  1  2 
+Proceso=2, Página 3 cargada en el marco 1
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    2 ->   0  0  0  E
+                    2 ->   1  1  1  6
+                    2 ->   2  1  1  9
+                    2 ->   3  1  0  1
+                    2 ->   4  0  0 FFFFFFFF
+                    2 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=3000
+Proceso=2 Página=3
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=4000
+Proceso=2 Página=4
+Páginas del proceso --> 1  2  3 
+Proceso=2, Página 4 cargada en el marco 1
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    2 ->   0  0  0  E
+                    2 ->   1  1  1  6
+                    2 ->   2  1  1  9
+                    2 ->   3  0  0 12
+                    2 ->   4  1  0  1
+                    2 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=4000
+Proceso=2 Página=4
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=5000
+Proceso=2 Página=5
+Páginas del proceso --> 1  2  4 
+Proceso=2, Página 5 cargada en el marco 1
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    2 ->   0  0  0  E
+                    2 ->   1  1  1  6
+                    2 ->   2  1  1  9
+                    2 ->   3  0  0 12
+                    2 ->   4  0  0 15
+                    2 ->   5  1  0  1
+---------------------------
+Page fault haSystem Frame Table area = 0x563f9a88f000
+Proccess Page Table area = 0x563f9a890000
+Frames area = 0x563f9a891000
+Base = 0x563f9a89d000
+Primer marco 0
+Frame 0, Dirección 0x563f9a891000 0x563f9a891000 
+Frame 1, Dirección 0x563f9a892000 0x563f9a892000 
+Frame 2, Dirección 0x563f9a893000 0x563f9a893000 
+Frame 3, Dirección 0x563f9a894000 0x563f9a894000 
+Frame 4, Dirección 0x563f9a895000 0x563f9a895000 
+Frame 5, Dirección 0x563f9a896000 0x563f9a896000 
+Frame 6, Dirección 0x563f9a897000 0x563f9a897000 
+Frame 7, Dirección 0x563f9a898000 0x563f9a898000 
+Frame 8, Dirección 0x563f9a899000 0x563f9a899000 
+Frame 9, Dirección 0x563f9a89a000 0x563f9a89a000 
+Frame A, Dirección 0x563f9a89b000 0x563f9a89b000 
+Frame B, Dirección 0x563f9a89c000 0x563f9a89c000 
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=0
+Proceso=1 Página=0
+Páginas del proceso -->
+Proceso=1, Página 0 cargada en el marco 2
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    1 ->   0  1  0  2
+                    1 ->   1  0  0 FFFFFFFF
+                    1 ->   2  0  0 FFFFFFFF
+                    1 ->   3  0  0 FFFFFFFF
+                    1 ->   4  0  0 FFFFFFFF
+                    1 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=0
+Proceso=1 Página=0
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=1000
+Proceso=1 Página=1
+Páginas del proceso --> 0 
+Proceso=1, Página 1 cargada en el marco 5
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    1 ->   0  1  1  2
+                    1 ->   1  1  0  5
+                    1 ->   2  0  0 FFFFFFFF
+                    1 ->   3  0  0 FFFFFFFF
+                    1 ->   4  0  0 FFFFFFFF
+                    1 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=1000
+Proceso=1 Página=1
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=2000
+Proceso=1 Página=2
+Páginas del proceso --> 0  1 
+Proceso=1, Página 2 cargada en el marco A
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    1 ->   0  1  1  2
+                    1 ->   1  1  1  5
+                    1 ->   2  1  0  A
+                    1 ->   3  0  0 FFFFFFFF
+                    1 ->   4  0  0 FFFFFFFF
+                    1 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=2000
+Proceso=1 Página=2
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=3000
+Proceso=1 Página=3
+Páginas del proceso --> 0  1  2 
+Proceso=1, Página 3 cargada en el marco 2
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    1 ->   0  0  0  D
+                    1 ->   1  1  1  5
+                    1 ->   2  1  1  A
+                    1 ->   3  1  0  2
+                    1 ->   4  0  0 FFFFFFFF
+                    1 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=3000
+Proceso=1 Página=3
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=4000
+Proceso=1 Página=4
+Páginas del proceso --> 1  2  3 
+Proceso=1, Página 4 cargada en el marco 2
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    1 ->   0  0  0  D
+                    1 ->   1  1  1  5
+                    1 ->   2  1  1  A
+                    1 ->   3  0  0 11
+                    1 ->   4  1  0  2
+                    1 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=4000
+Proceso=1 Página=4
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=5000
+Proceso=1 Página=5
+Páginas del proceso --> 1  2  4 
+Proceso=1, Página 5 cargada en el marco 2
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    1 ->   0  0  0  D
+                    1 ->   1  1  1  5
+                    1 ->   2  1  1  A
+                    1 ->   3  0  0 11
+                    1 ->   4  0  0 16
+                    1 ->   5  1  0  2
+---------------------------
+Page fault haSystem Frame Table area = 0x563f9a88f000
+Proccess Page Table area = 0x563f9a890000
+Frames area = 0x563f9a891000
+Base = 0x563f9a89d000
+Primer marco 0
+Frame 0, Dirección 0x563f9a891000 0x563f9a891000 
+Frame 1, Dirección 0x563f9a892000 0x563f9a892000 
+Frame 2, Dirección 0x563f9a893000 0x563f9a893000 
+Frame 3, Dirección 0x563f9a894000 0x563f9a894000 
+Frame 4, Dirección 0x563f9a895000 0x563f9a895000 
+Frame 5, Dirección 0x563f9a896000 0x563f9a896000 
+Frame 6, Dirección 0x563f9a897000 0x563f9a897000 
+Frame 7, Dirección 0x563f9a898000 0x563f9a898000 
+Frame 8, Dirección 0x563f9a899000 0x563f9a899000 
+Frame 9, Dirección 0x563f9a89a000 0x563f9a89a000 
+Frame A, Dirección 0x563f9a89b000 0x563f9a89b000 
+Frame B, Dirección 0x563f9a89c000 0x563f9a89c000 
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=0
+Proceso=3 Página=0
+Páginas del proceso -->
+Proceso=3, Página 0 cargada en el marco 4
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    3 ->   0  1  0  4
+                    3 ->   1  0  0 FFFFFFFF
+                    3 ->   2  0  0 FFFFFFFF
+                    3 ->   3  0  0 FFFFFFFF
+                    3 ->   4  0  0 FFFFFFFF
+                    3 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=0
+Proceso=3 Página=0
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=1000
+Proceso=3 Página=1
+Páginas del proceso --> 0 
+Proceso=3, Página 1 cargada en el marco 8
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    3 ->   0  1  1  4
+                    3 ->   1  1  0  8
+                    3 ->   2  0  0 FFFFFFFF
+                    3 ->   3  0  0 FFFFFFFF
+                    3 ->   4  0  0 FFFFFFFF
+                    3 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=1000
+Proceso=3 Página=1
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=2000
+Proceso=3 Página=2
+Páginas del proceso --> 0  1 
+Proceso=3, Página 2 cargada en el marco B
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    3 ->   0  1  1  4
+                    3 ->   1  1  1  8
+                    3 ->   2  1  0  B
+                    3 ->   3  0  0 FFFFFFFF
+                    3 ->   4  0  0 FFFFFFFF
+                    3 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=2000
+Proceso=3 Página=2
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=3000
+Proceso=3 Página=3
+Páginas del proceso --> 0  1  2 
+Proceso=3, Página 3 cargada en el marco B
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    3 ->   0  1  1  4
+                    3 ->   1  1  1  8
+                    3 ->   2  0  0  F
+                    3 ->   3  1  0  B
+                    3 ->   4  0  0 FFFFFFFF
+                    3 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=3000
+Proceso=3 Página=3
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=4000
+Proceso=3 Página=4
+Páginas del proceso --> 0  1  3 
+Proceso=3, Página 4 cargada en el marco B
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    3 ->   0  1  1  4
+                    3 ->   1  1  1  8
+                    3 ->   2  0  0  F
+                    3 ->   3  0  0 13
+                    3 ->   4  1  0  B
+                    3 ->   5  0  0 FFFFFFFF
+---------------------------
+Page fault handler
+Página modificada de la dirección=4000
+Proceso=3 Página=4
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=5000
+Proceso=3 Página=5
+Páginas del proceso --> 0  1  4 
+Proceso=3, Página 5 cargada en el marco B
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    3 ->   0  1  1  4
+                    3 ->   1  1  1  8
+                    3 ->   2  0  0  F
+                    3 ->   3  0  0 13
+                    3 ->   4  0  0 17
+                    3 ->   5  1  0  B
+---------------------------
+Page fault handler
+Página modificada de la dirección=5000
+Proceso=1 Página=5
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=0
+Proceso=1 Página=0
+Páginas del proceso --> 1  2  5 
+Proceso=1, Página 0 cargada en el marco 2
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    1 ->   0  1  0  2
+                    1 ->   1  1  1  5
+                    1 ->   2  1  1  A
+                    1 ->   3  0  0 11
+                    1 ->   4  0  0 16
+                    1 ->   5  0  0  D
+Escritura del proceso 1 en la pagina 5
+Escritura del proceso 1 en la pagina 1
+Escritura del proceso 1 en la pagina 2
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=3000
+Proceso=1 Página=3
+Páginas del proceso --> 0  1  2 
+Proceso=1, Página 3 cargada en el marco 2
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    1 ->   0  0  0 11
+                    1 ->   1  1  1  5
+                    1 ->   2  1  1  A
+                    1 ->   3  1  0  2
+                    1 ->   4  0  0 16
+                    1 ->   5  0  0  D
+Escritura del proceso 1 en la pagina 5
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=4000
+Proceso=1 Página=4
+Páginas del proceso --> 1  2  3 
+Proceso=1, Página 4 cargada en el marco 2
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    1 ->   0  0  0 11
+                    1 ->   1  1  1  5
+                    1 ->   2  1  1  A
+                    1 ->   3  0  0 16
+                    1 ->   4  1  0  2
+                    1 ->   5  0  0  D
+Escritura del proceso 1 en la pagina 5
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=5000
+Proceso=1 Página=5
+Páginas del proceso --> 1  2  4 
+Proceso=1, Página 5 cargada en el marco 2
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    1 ->   0  0  0 11
+                    1 ->   1  1  1  5
+                    1 ->   2  1  1  A
+                    1 ->   3  0  0 16
+                    1 ->   4  0  0  D
+                    1 ->   5  1  0  2
+Escritura del proceso 1 en la pagina 5
+Proceso 1, libera los marcos --> 5  A  2 
+Termina proceso 1, Total de fallos de página = 10
+ndler
+Página modificada de la dirección=5000
+Proceso=0 Página=5
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=0
+Proceso=0 Página=0
+Páginas del proceso --> 1  2  5 
+Proceso=0, Página 0 cargada en el marco 0
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    0 ->   0  1  0  0
+                    0 ->   1  1  1  3
+                    0 ->   2  1  1  7
+                    0 ->   3  0  0 10
+                    0 ->   4  0  0 14
+                    0 ->   5  0  0  C
+Escritura del proceso 0 en la pagina 5
+Escritura del proceso 0 en la pagina 1
+Escritura del proceso 0 en la pagina 2
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=3000
+Proceso=0 Página=3
+Páginas del proceso --> 0  1  2 
+Proceso=0, Página 3 cargada en el marco 0
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    0 ->   0  0  0 10
+                    0 ->   1  1  1  3
+                    0 ->   2  1  1  7
+                    0 ->   3  1  0  0
+                    0 ->   4  0  0 14
+                    0 ->   5  0  0  C
+Escritura del proceso 0 en la pagina 5
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=4000
+Proceso=0 Página=4
+Páginas del proceso --> 1  2  3 
+Proceso=0, Página 4 cargada en el marco 0
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    0 ->   0  0  0 10
+                    0 ->   1  1  1  3
+                    0 ->   2  1  1  7
+                    0 ->   3  0  0 14
+                    0 ->   4  1  0  0
+                    0 ->   5  0  0  C
+Escritura del proceso 0 en la pagina 5
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=5000
+Proceso=0 Página=5
+Páginas del proceso --> 1  2  4 
+Proceso=0, Página 5 cargada en el marco 0
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    0 ->   0  0  0 10
+                    0 ->   1  1  1  3
+                    0 ->   2  1  1  7
+                    0 ->   3  0  0 14
+                    0 ->   4  0  0  C
+                    0 ->   5  1  0  0
+Escritura del proceso 0 en la pagina 5
+Proceso 0, libera los marcos --> 3  7  0 
+Termina proceso 0, Total de fallos de página = 10
+ndler
+Página modificada de la dirección=5000
+Proceso=2 Página=5
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=0
+Proceso=2 Página=0
+Páginas del proceso --> 1  2  5 
+Proceso=2, Página 0 cargada en el marco 1
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    2 ->   0  1  0  1
+                    2 ->   1  1  1  6
+                    2 ->   2  1  1  9
+                    2 ->   3  0  0 12
+                    2 ->   4  0  0 15
+                    2 ->   5  0  0  E
+Escritura del proceso 2 en la pagina 5
+Escritura del proceso 2 en la pagina 1
+Escritura del proceso 2 en la pagina 2
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=3000
+Proceso=2 Página=3
+Páginas del proceso --> 0  1  2 
+Proceso=2, Página 3 cargada en el marco 1
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    2 ->   0  0  0 12
+                    2 ->   1  1  1  6
+                    2 ->   2  1  1  9
+                    2 ->   3  1  0  1
+                    2 ->   4  0  0 15
+                    2 ->   5  0  0  E
+Escritura del proceso 2 en la pagina 5
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=4000
+Proceso=2 Página=4
+Páginas del proceso --> 1  2  3 
+Proceso=2, Página 4 cargada en el marco 1
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    2 ->   0  0  0 12
+                    2 ->   1  1  1  6
+                    2 ->   2  1  1  9
+                    2 ->   3  0  0 15
+                    2 ->   4  1  0  1
+                    2 ->   5  0  0  E
+Escritura del proceso 2 en la pagina 5
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=5000
+Proceso=2 Página=5
+Páginas del proceso --> 1  2  4 
+Proceso=2, Página 5 cargada en el marco 1
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    2 ->   0  0  0 12
+                    2 ->   1  1  1  6
+                    2 ->   2  1  1  9
+                    2 ->   3  0  0 15
+                    2 ->   4  0  0  E
+                    2 ->   5  1  0  1
+Escritura del proceso 2 en la pagina 5
+Proceso 2, libera los marcos --> 6  9  1 
+Termina proceso 2, Total de fallos de página = 10
+ndler
+Página modificada de la dirección=5000
+Proceso=3 Página=5
+Escritura del proceso 3 en la pagina 0
+Escritura del proceso 3 en la pagina 1
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=2000
+Proceso=3 Página=2
+Páginas del proceso --> 0  1  5 
+Proceso=3, Página 2 cargada en el marco B
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    3 ->   0  1  1  4
+                    3 ->   1  1  1  8
+                    3 ->   2  1  0  B
+                    3 ->   3  0  0 13
+                    3 ->   4  0  0 17
+                    3 ->   5  0  0  F
+Escritura del proceso 3 en la pagina 5
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=3000
+Proceso=3 Página=3
+Páginas del proceso --> 0  1  2 
+Proceso=3, Página 3 cargada en el marco 4
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    3 ->   0  0  0 13
+                    3 ->   1  1  1  8
+                    3 ->   2  1  0  B
+                    3 ->   3  1  0  4
+                    3 ->   4  0  0 17
+                    3 ->   5  0  0  F
+Escritura del proceso 3 en la pagina 0
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=4000
+Proceso=3 Página=4
+Páginas del proceso --> 1  2  3 
+Proceso=3, Página 4 cargada en el marco 4
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    3 ->   0  0  0 13
+                    3 ->   1  1  1  8
+                    3 ->   2  1  0  B
+                    3 ->   3  0  0 17
+                    3 ->   4  1  0  4
+                    3 ->   5  0  0  F
+Escritura del proceso 3 en la pagina 0
+---------------------------
+Page fault handler
+Direccion que provocó el fallo=5000
+Proceso=3 Página=5
+Páginas del proceso --> 1  2  4 
+Proceso=3, Página 5 cargada en el marco 0
+Tabla de páginas Proc -> Pag Pr Mo Fr
+                    3 ->   0  0  0 13
+                    3 ->   1  1  1  8
+                    3 ->   2  1  0  B
+                    3 ->   3  0  0 17
+                    3 ->   4  0  0  F
+                    3 ->   5  1  0  0
+Escritura del proceso 0 en la pagina 5
+Proceso 3, libera los marcos --> 8  B  0 
+Termina proceso 3, Total de fallos de página = 10
+System Frame Table area = 0x563f9a88f000
+Proccess Page Table area = 0x563f9a890000
+Frames area = 0x563f9a891000
+Base = 0x563f9a89d000
+Primer marco 0
+Frame 0, Dirección 0x563f9a891000 0x563f9a891000 
+Frame 1, Dirección 0x563f9a892000 0x563f9a892000 
+Frame 2, Dirección 0x563f9a893000 0x563f9a893000 
+Frame 3, Dirección 0x563f9a894000 0x563f9a894000 
+Frame 4, Dirección 0x563f9a895000 0x563f9a895000 
+Frame 5, Dirección 0x563f9a896000 0x563f9a896000 
+Frame 6, Dirección 0x563f9a897000 0x563f9a897000 
+Frame 7, Dirección 0x563f9a898000 0x563f9a898000 
+Frame 8, Dirección 0x563f9a899000 0x563f9a899000 
+Frame 9, Dirección 0x563f9a89a000 0x563f9a89a000 
+Frame A, Dirección 0x563f9a89b000 0x563f9a89b000 
+Frame B, Dirección 0x563f9a89c000 0x563f9a89c000 
+Tiempo total de ejecución 6.731707
