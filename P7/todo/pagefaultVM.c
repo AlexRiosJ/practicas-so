@@ -58,7 +58,7 @@ int pagefault(char *vaddress)
         // Poner el bit de presente en 0 en la tabla de páginas
         (ptbr + pag_a_expulsar)->presente = 0;
         // Si la página ya fue modificada, grábala en disco
-        if((ptbr + pag_a_expulsar)->modificado)
+        if ((ptbr + pag_a_expulsar)->modificado)
         {
             // Escribe el frame de la página en el archivo de respaldo y pon en 0 el bit de modificado
             saveframe((ptbr + pag_a_expulsar)->framenumber);
@@ -83,13 +83,13 @@ int pagefault(char *vaddress)
     // Busca un marco físico libre en el sistema
     frame = getfreeframe();
     // Si no hay marcos físicos libres en el sistema regresa error
-    if(frame == -1)
+    if (frame == -1)
     {
         return (-1); // Regresar indicando error de memoria insuficiente
     }
 
     // Si la página estaba en memoria secundaria
-    if(!(ptbr + pag_del_proceso)->presente)
+    if (!(ptbr + pag_del_proceso)->presente)
     {
         // Cópialo al frame libre encontrado en memoria principal y transfiérelo a la memoria física
         copyframe((ptbr + pag_del_proceso)->framenumber, frame);
@@ -104,5 +104,55 @@ int pagefault(char *vaddress)
     return (1); // Regresar todo bien
 }
 
-
 // Implementar funciones
+int getfreeframe()
+{
+    int i;
+    // Busca un marco libre en el sistema
+    for (i = framesbegin; i < systemframetablesize + framesbegin; i++)
+        if (!systemframetable[i].assigned)
+        {
+            systemframetable[i].assigned = 1;
+            break;
+        }
+    if (i < systemframetablesize + framesbegin)
+        systemframetable[i].assigned = 1;
+    else
+        i = -1;
+    return (i);
+}
+
+int searchvirtualframe()
+{
+    int i;
+    for (i = framesbegin; i < (systemframetablesize + framesbegin) * 2; i++)
+    {
+        if (!systemframetable[i].assigned)
+        {
+            systemframetable[i].assigned = 1;
+            break;
+        }
+    }
+    if (i < (systemframetablesize + framesbegin) * 2)
+        systemframetable[i].assigned = 1;
+    else
+        i = -1;
+    return i;
+}
+
+int getfifo()
+{
+    long first_in_tarrive = 0xFFFFFFFFFFFFFFF;
+    long first_out = -1;
+    struct PROCESSPAGETABLE *i;
+    for (i = ptbr; i < sizeof(struct PROCESSPAGETABLE) * 6; i += sizeof(struct PROCESSPAGETABLE))
+    {
+        if (i->presente && i->tarrived < first_in_tarrive)
+        {
+            first_in_tarrive = i->tarrived;
+            first_out = i->framenumber;
+            i->presente = 0;
+        }
+    }
+    return first_out;
+}
