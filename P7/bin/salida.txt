@@ -77,7 +77,7 @@ Tiempo de 2: 18446744073709433448
 Tiempo de 3: 292317
 Tiempo de 4: 0
 Tiempo de 5: 0
-PAgina a aexpulsar 0
+Pagina a expulsar 0
 Proceso=3, Página 3 cargada en el marco 0
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     3 ->   0  0  0  C
@@ -101,7 +101,7 @@ Tiempo de 2: 18446744073709433448
 Tiempo de 3: 292317
 Tiempo de 4: 18446744073708454092
 Tiempo de 5: 0
-PAgina a aexpulsar 3
+Pagina a expulsar 3
 Proceso=3, Página 4 cargada en el marco 0
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     3 ->   0  0  0  C
@@ -199,7 +199,7 @@ Tiempo de 2: 18446744073709443801
 Tiempo de 3: 302672
 Tiempo de 4: 0
 Tiempo de 5: 0
-PAgina a aexpulsar 0
+Pagina a expulsar 0
 Proceso=2, Página 3 cargada en el marco 1
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     2 ->   0  0  0  D
@@ -223,7 +223,7 @@ Tiempo de 2: 18446744073709443801
 Tiempo de 3: 302672
 Tiempo de 4: 18446744073708464055
 Tiempo de 5: 0
-PAgina a aexpulsar 3
+Pagina a expulsar 3
 Proceso=2, Página 4 cargada en el marco 1
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     2 ->   0  0  0  D
@@ -320,7 +320,7 @@ Tiempo de 2: 18446744073709443845
 Tiempo de 3: 302498
 Tiempo de 4: 0
 Tiempo de 5: 0
-PAgina a aexpulsar 0
+Pagina a expulsar 0
 Proceso=0, Página 3 cargada en el marco 2
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     0 ->   0  0  0  E
@@ -344,7 +344,7 @@ Tiempo de 2: 18446744073709443845
 Tiempo de 3: 302498
 Tiempo de 4: 18446744073708463949
 Tiempo de 5: 0
-PAgina a aexpulsar 3
+Pagina a expulsar 3
 Proceso=0, Página 4 cargada en el marco 1
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     0 ->   0  0  0  E
@@ -441,7 +441,7 @@ Tiempo de 2: 292317
 Tiempo de 3: 18446744073708253808
 Tiempo de 4: 0
 Tiempo de 5: 0
-PAgina a aexpulsar 2
+Pagina a expulsar 2
 Proceso=1, Página 3 cargada en el marco B
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     1 ->   0  1  1  4
@@ -465,7 +465,7 @@ Tiempo de 2: 292317
 Tiempo de 3: 18446744073708253808
 Tiempo de 4: 18446744073708863583
 Tiempo de 5: 0
-PAgina a aexpulsar 0
+Pagina a expulsar 0
 Proceso=1, Página 4 cargada en el marco 2
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     1 ->   0  0  0 12
@@ -488,7 +488,7 @@ Tiempo de 2: 18446744073709433448
 Tiempo de 3: 292317
 Tiempo de 4: 18446744073708454092
 Tiempo de 5: 18446744073707065050
-PAgina a aexpulsar 1
+Pagina a expulsar 1
 Proceso=3, Página 5 cargada en el marco 3
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     3 ->   0  0  0  C
@@ -512,7 +512,7 @@ Tiempo de 2: 18446744073709433448
 Tiempo de 3: 292317
 Tiempo de 4: 18446744073708454092
 Tiempo de 5: 18446744073707065050
-PAgina a aexpulsar 5
+Pagina a expulsar 5
 Proceso=3, Página 0 cargada en el marco 3
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     3 ->   0  1  0  3
@@ -533,7 +533,7 @@ Tiempo de 2: 18446744073709433448
 Tiempo de 3: 292317
 Tiempo de 4: 18446744073708454092
 Tiempo de 5: 18446744073707065050
-PAgina a aexpulsar 0
+Pagina a expulsar 0
 Proceso=3, Página 1 cargada en el marco 3
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     3 ->   0  0  0 13
@@ -555,7 +555,7 @@ Tiempo de 2: 18446744073709433448
 Tiempo de 3: 18446744073705150690
 Tiempo de 4: 18446744073708454092
 Tiempo de 5: 18446744073707065050
-PAgina a aexpulsar 1
+Pagina a expulsar 1
 Proceso=3, Página 3 cargada en el marco 3
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     3 ->   0  0  0 13
@@ -577,7 +577,7 @@ Tiempo de 2: 18446744073709433448
 Tiempo de 3: 18446744073705150690
 Tiempo de 4: 18446744073708454092
 Tiempo de 5: 18446744073705777244
-PAgina a aexpulsar 3
+Pagina a expulsar 3
 Proceso=3, Página 5 cargada en el marco 3
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     3 ->   0  0  0 13
@@ -595,7 +595,7 @@ Tiempo de 2: 18446744073709443801
 Tiempo de 3: 302672
 Tiempo de 4: 18446744073708464055
 Tiempo de 5: 18446744073707073288
-PAgina a aexpulsar 4
+Pagina a expulsar 4
 Proceso=2, Página 5 cargada en el marco 1
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     2 ->   0  0  0  D
@@ -619,7 +619,7 @@ Tiempo de 2: 18446744073709443801
 Tiempo de 3: 302672
 Tiempo de 4: 18446744073708464055
 Tiempo de 5: 18446744073707073288
-PAgina a aexpulsar 5
+Pagina a expulsar 5
 Proceso=2, Página 0 cargada en el marco 1
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     2 ->   0  1  0  1
@@ -642,7 +642,7 @@ Tiempo de 2: 18446744073709443801
 Tiempo de 3: 18446744073706513215
 Tiempo de 4: 18446744073708464055
 Tiempo de 5: 18446744073707073288
-PAgina a aexpulsar 0
+Pagina a expulsar 0
 Proceso=2, Página 3 cargada en el marco 1
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     2 ->   0  0  0 11
@@ -663,7 +663,7 @@ Tiempo de 2: 18446744073709443801
 Tiempo de 3: 18446744073706513215
 Tiempo de 4: 18446744073705154176
 Tiempo de 5: 18446744073707073288
-PAgina a aexpulsar 3
+Pagina a expulsar 3
 Proceso=2, Página 4 cargada en el marco 1
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     2 ->   0  0  0 11
@@ -684,7 +684,7 @@ Tiempo de 2: 18446744073709443801
 Tiempo de 3: 18446744073706513215
 Tiempo de 4: 18446744073705154176
 Tiempo de 5: 18446744073705783700
-PAgina a aexpulsar 4
+Pagina a expulsar 4
 Proceso=2, Página 5 cargada en el marco 1
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     2 ->   0  0  0 11
@@ -702,7 +702,7 @@ Tiempo de 2: 18446744073709443845
 Tiempo de 3: 302498
 Tiempo de 4: 18446744073708463949
 Tiempo de 5: 18446744073707073414
-PAgina a aexpulsar 4
+Pagina a expulsar 4
 Proceso=0, Página 5 cargada en el marco 1
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     0 ->   0  0  0  E
@@ -726,7 +726,7 @@ Tiempo de 2: 18446744073709443845
 Tiempo de 3: 302498
 Tiempo de 4: 18446744073708463949
 Tiempo de 5: 18446744073707073414
-PAgina a aexpulsar 5
+Pagina a expulsar 5
 Proceso=0, Página 0 cargada en el marco 1
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     0 ->   0  1  0  1
@@ -749,7 +749,7 @@ Tiempo de 2: 18446744073709443845
 Tiempo de 3: 18446744073706513305
 Tiempo de 4: 18446744073708463949
 Tiempo de 5: 18446744073707073414
-PAgina a aexpulsar 0
+Pagina a expulsar 0
 Proceso=0, Página 3 cargada en el marco 1
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     0 ->   0  0  0 11
@@ -770,7 +770,7 @@ Tiempo de 2: 18446744073709443845
 Tiempo de 3: 18446744073706513305
 Tiempo de 4: 18446744073705154300
 Tiempo de 5: 18446744073707073414
-PAgina a aexpulsar 3
+Pagina a expulsar 3
 Proceso=0, Página 4 cargada en el marco 1
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     0 ->   0  0  0 11
@@ -791,7 +791,7 @@ Tiempo de 2: 18446744073709443845
 Tiempo de 3: 18446744073706513305
 Tiempo de 4: 18446744073705154300
 Tiempo de 5: 18446744073705783851
-PAgina a aexpulsar 4
+Pagina a expulsar 4
 Proceso=0, Página 5 cargada en el marco 1
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     0 ->   0  0  0 11
@@ -809,7 +809,7 @@ Tiempo de 2: 292317
 Tiempo de 3: 18446744073708253808
 Tiempo de 4: 18446744073708863583
 Tiempo de 5: 18446744073707473885
-PAgina a aexpulsar 3
+Pagina a expulsar 3
 Proceso=1, Página 5 cargada en el marco 4
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     1 ->   0  0  0 12
@@ -833,7 +833,7 @@ Tiempo de 2: 292317
 Tiempo de 3: 18446744073708253808
 Tiempo de 4: 18446744073708863583
 Tiempo de 5: 18446744073707473885
-PAgina a aexpulsar 5
+Pagina a expulsar 5
 Proceso=1, Página 0 cargada en el marco 4
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     1 ->   0  1  0  4
@@ -855,7 +855,7 @@ Tiempo de 2: 18446744073704914870
 Tiempo de 3: 18446744073708253808
 Tiempo de 4: 18446744073708863583
 Tiempo de 5: 18446744073707473885
-PAgina a aexpulsar 0
+Pagina a expulsar 0
 Proceso=1, Página 2 cargada en el marco 4
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     1 ->   0  0  0  F
@@ -876,7 +876,7 @@ Tiempo de 2: 18446744073704914870
 Tiempo de 3: 18446744073705583694
 Tiempo de 4: 18446744073708863583
 Tiempo de 5: 18446744073707473885
-PAgina a aexpulsar 2
+Pagina a expulsar 2
 Proceso=1, Página 3 cargada en el marco 4
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     1 ->   0  0  0  F
@@ -898,7 +898,7 @@ Tiempo de 2: 18446744073704914870
 Tiempo de 3: 18446744073705583694
 Tiempo de 4: 18446744073708863583
 Tiempo de 5: 18446744073704204115
-PAgina a aexpulsar 3
+Pagina a expulsar 3
 Proceso=1, Página 5 cargada en el marco 0
 Tabla de páginas Proc -> Pag Pr Mo Fr
                     1 ->   0  0  0  F
