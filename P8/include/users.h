@@ -1,0 +1,2 @@
+int getuid();
+int getgid();
