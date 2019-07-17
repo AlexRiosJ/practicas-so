@@ -256,8 +256,75 @@ int vdwrite(int fd, char *buffer, int bytes)
 
 int vdread(int fd, char *buffer, int bytes)
 {
+	// Esta es la función a realizar
+	int currblock;
+	int currinode;
+	int cont=0;
+	int sector;
+	int inicio_nodos_i;
+	int i;
+	int result;
+	unsigned short *currptr;
+
+		// Si no está abierto, regresa error
+	if(openfiles[fd].inuse==0)
+		return(-1);
+
+	// Checar si el sector de boot está en memoria
+	if(!sb_in_mem)
+	{
+		// Si no está en memoria, cárgalo
+		result=vdreadseclog(0,0,(char *) &sb);
+		sb_in_mem=1;
+	}
+	inicio_nodos_i=sb.sec_res+sb.sec_mapa_bits_nodos_i+sb.sec_mapa_bits_bloques;
+
+	currinode=openfiles[fd].inode;
+
+	while(cont < bytes)
+	{
+		// Obtener la dirección de donde está el bloque que corresponde
+		// a la posición actual
+		currptr=currpostoptr(fd);
+		if(currptr==NULL)
+			return(-1);
 	
-}
+		currblock=*currptr;
+
+		// Si el bloque está en blanco, regresa un error por andar leyendo nada
+		if(currblock==0)
+		{
+			return -1;
+		}
+
+		// Si el bloque de la posición actual no está en memoria
+		// Lee el bloque al buffer del archivo
+		if(openfiles[fd].currbloqueenmemoria != currblock)
+		{
+			// Leer el bloque actual hacia el buffer que
+			// está en la tabla de archivos abiertos
+			readblock(currblock,openfiles[fd].buffer);			
+			openfiles[fd].currbloqueenmemoria = currblock;
+		}
+
+		// Copia el caracter al buffer
+		buffer[cont] = openfiles[fd].buffer[openfiles[fd].currpos%1024];
+
+		// Incrementa posición
+		openfiles[fd].currpos++;
+
+		// En el momento que tienes el mismo tamaño que el archivo, sales
+		if(openfiles[fd].currpos >= inode[currinode].size)
+			break;
+
+		// Incrementa el contador
+		cont++;
+
+	}
+
+	return(cont);
+
+} 
 
 int vdclose(int fd)
 {
