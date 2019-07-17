@@ -313,8 +313,8 @@ int vdread(int fd, char *buffer, int bytes)
 		// Incrementa posición
 		openfiles[fd].currpos++;
 
-		// En el momento que tienes el mismo tamaño que el archivo, sales
-		if(openfiles[fd].currpos >= inode[currinode].size)
+		// En el momento que tienes es mayor al tamaño del archivo, sales
+		if(openfiles[fd].currpos > inode[currinode].size)
 			break;
 
 		// Incrementa el contador
