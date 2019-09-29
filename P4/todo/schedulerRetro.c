@@ -27,18 +27,8 @@ void fillQueues()
 		for (j = 0; j < MAXTHREAD; j++)
 		{
 			ready[i].elements[j] = -1;
+			threadsPriority[j] = -1;
 		}
-	}
-	for (i = 0; i < MAXTHREAD; i++)
-	{
-		/*
-		char filename[10];
-		sprintf(filename, "process%d", i);
-		FILE *fp = fopen(filename, "w");
-		fprintf(fp, "%d\n", -1);
-		fclose(fp);
-		*/
-		threadsPriority[i] = -1;
 	}
 }
 
@@ -122,29 +112,13 @@ void scheduler(int arguments)
 	{
 		threads[callingthread].status = READY;
 
-		/*
-		char filename[10];
-		char line[10];
-		sprintf(filename, "process%d", callingthread);
-		FILE *fp = fopen(filename, "r");
-		while (fgets(line, sizeof line, fp) != NULL)
-			currentPriority = atoi(line);
-		fclose(fp);
-		*/
 		currentPriority = threadsPriority[callingthread];
 
 		if (moreUpcoming(callingthread))
 		{
-			if (currentPriority < (PRIORITYNUMBER - 1))
-			{
-				_enqueue(&ready[currentPriority + 1], callingthread);
-				callPriority = currentPriority + 1;
-			}
-			else
-			{
-				_enqueue(&ready[currentPriority], callingthread);
-				callPriority = currentPriority;
-			}
+			int newPriority = currentPriority < PRIORITYNUMBER - 1 ? currentPriority + 1 : currentPriority;
+			_enqueue(&ready[newPriority], callingthread);
+			callPriority = newPriority;
 			changethread = 1;
 		}
 	}
@@ -158,23 +132,11 @@ void scheduler(int arguments)
 	if (changethread)
 	{
 		old = currthread;
-
-		/*
-		char filename[10];
-		sprintf(filename, "process%d", old);
-		FILE *fp = fopen(filename, "w");
-		fprintf(fp, "%d\n", callPriority);
-		fclose(fp);
-		*/
 		threadsPriority[old] = callPriority;
 
 		// Luego de esto, hacer el cambio de prioridad y actualizar el valor de currentPriority
-		if (!_emptyq(&ready[currentPriority]))
-			next = _dequeue(&ready[currentPriority]);
-		else
-		{
-			next = _dequeue(&ready[++currentPriority]);
-		}
+		
+		next = _dequeue(&ready[!_emptyq(&ready[currentPriority]) ? currentPriority : ++currentPriority]);
 
 		threads[next].status = RUNNING;
 		_swapthreads(old, next);
